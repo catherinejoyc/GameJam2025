@@ -10,11 +10,25 @@ using Random = Unity.Mathematics.Random;
 
 public class MazeGenerator : MonoBehaviour
 {
+    public static MazeGenerator Instance { get; private set; }
+
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            DestroyImmediate(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+
+    }
+
 
     public int defaultSize = 30; // Size of the maze
     public int defaultRandSteps = 40; // Number of random steps to take
     public double defaultPerturbationChance = 0.5; // Chance of perturbation in the maze generation
-    public Vector3 defaultPosition = new Vector3(0, 0, 0); // Default position to spawn the maze
 
     public GameObject mazePrefab;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -29,17 +43,25 @@ public class MazeGenerator : MonoBehaviour
         
     }
 
-    public void GenerateMaze()
+    public Maze GenerateMaze(GameObject parent)
     {
-        GenerateMaze(defaultPosition, defaultSize, defaultRandSteps, defaultPerturbationChance);
+        return GenerateMaze(parent, defaultSize, defaultRandSteps, defaultPerturbationChance);
     }
 
-    public void GenerateMaze(Vector3 position, int size, int randSteps, double perturbationChance)
+    public Maze GenerateMaze()
     {
-        GameObject mazeObject = Instantiate(mazePrefab,  position, Quaternion.identity, this.transform);
+        return GenerateMaze(gameObject, defaultSize, defaultRandSteps, defaultPerturbationChance);
+    }
+
+    public Maze GenerateMaze(GameObject parent, int size, int randSteps, double perturbationChance)
+    {
+        /*
+         * Returns the start tile
+         */
+        GameObject mazeObject = Instantiate(mazePrefab, parent.transform);
         Maze maze = mazeObject.GetComponent<Maze>();
         maze.SetAttribute(size, randSteps, perturbationChance);
-        maze.PrintMaze();
+        return maze;
     }
 
 }

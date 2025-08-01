@@ -16,6 +16,7 @@ public class Tile : MonoBehaviour
 	public GameObject rightWall;
 	public GameObject bottomWall;
 	public GameObject topWall;
+	private bool positionSet = false;
 
 	public bool isMainPath { get; set; } = false;
 	public bool offRoad { get; set; } = false;
@@ -38,9 +39,10 @@ public class Tile : MonoBehaviour
 
     private void UpdateSelf()
     {
-	    if (!Mathf.Approximately(transform.position.x, this.x) || !Mathf.Approximately(transform.position.y, this.y))
+	    if (!positionSet)
 	    {
-		    transform.position = new Vector3(this.x, this.y, transform.position.z);
+		    positionSet = true;
+		    transform.position = new Vector3(this.x + transform.parent.transform.position.x, this.y + transform.parent.transform.position.y, transform.position.z);
 	    }
 
 	    topWall.SetActive(!walkable[Direction.Up]);
