@@ -6,10 +6,10 @@ using UnityEngine.Rendering.Universal;
 public class FlashingLightsController : MonoBehaviour
 {
     public List<Light2D> neonLights;
-    public float minOnTime = 0.2f;
-    public float maxOnTime = 1.2f;
+    public float minOnTime = 5.0f;
+    public float maxOnTime = 20.0f;
     public float minOffTime = 0.3f;
-    public float maxOffTime = 2.0f;
+    public float maxOffTime = 0.5f;
 
     void Start()
     {
