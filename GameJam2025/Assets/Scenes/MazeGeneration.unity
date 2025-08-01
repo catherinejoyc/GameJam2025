@@ -300,55 +300,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &942334561
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 942334563}
-  - component: {fileID: 942334562}
-  m_Layer: 0
-  m_Name: MazeManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &942334562
+--- !u!114 &942334562 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 2350271785544160163, guid: 0ab90b48a51c11842b358fbdfcce7be8, type: 3}
+  m_PrefabInstance: {fileID: 3984799027030913253}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 942334561}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 427b2d3b58d0fdd42bb8b9f6140800a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultSize: 30
-  defaultRandSteps: 40
-  defaultPerturbationChance: 0.5
-  defaultPosition: {x: 0, y: 0, z: 0}
-  mazePrefab: {fileID: 999077232053151347, guid: 14b0f93a5a0a766479417b0d5febef8d, type: 3}
---- !u!4 &942334563
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 942334561}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1099718267
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,11 +717,68 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1881686214}
   m_CullTransparentMesh: 1
+--- !u!1001 &3984799027030913253
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4901600457434710808, guid: 0ab90b48a51c11842b358fbdfcce7be8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4901600457434710808, guid: 0ab90b48a51c11842b358fbdfcce7be8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4901600457434710808, guid: 0ab90b48a51c11842b358fbdfcce7be8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4901600457434710808, guid: 0ab90b48a51c11842b358fbdfcce7be8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4901600457434710808, guid: 0ab90b48a51c11842b358fbdfcce7be8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4901600457434710808, guid: 0ab90b48a51c11842b358fbdfcce7be8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4901600457434710808, guid: 0ab90b48a51c11842b358fbdfcce7be8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4901600457434710808, guid: 0ab90b48a51c11842b358fbdfcce7be8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4901600457434710808, guid: 0ab90b48a51c11842b358fbdfcce7be8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4901600457434710808, guid: 0ab90b48a51c11842b358fbdfcce7be8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8697865071806935196, guid: 0ab90b48a51c11842b358fbdfcce7be8, type: 3}
+      propertyPath: m_Name
+      value: MazeManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0ab90b48a51c11842b358fbdfcce7be8, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1099718270}
-  - {fileID: 942334563}
+  - {fileID: 3984799027030913253}
   - {fileID: 454506055}
   - {fileID: 721176263}
