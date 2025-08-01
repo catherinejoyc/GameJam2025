@@ -604,6 +604,7 @@ GameObject:
   - component: {fileID: 546725848}
   - component: {fileID: 546725847}
   - component: {fileID: 546725846}
+  - component: {fileID: 546725850}
   m_Layer: 0
   m_Name: Camera Player 1
   m_TagString: Untagged
@@ -662,7 +663,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 546725845}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &546725848
 Camera:
   m_ObjectHideFlags: 0
@@ -729,6 +730,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 13044863}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &546725850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 546725845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca0c505f2e913fb4287dad25dc7f959f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1950589436}
 --- !u!1 &563014239
 GameObject:
   m_ObjectHideFlags: 0
@@ -923,6 +937,55 @@ Transform:
   - {fileID: 1619398783}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &687733269
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 687733271}
+  - component: {fileID: 687733270}
+  m_Layer: 0
+  m_Name: LevelManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &687733270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 687733269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 769bbcdd6c11a994b8e31c8dabb7e3f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Maze1Container: {fileID: 1835846592}
+  Maze2Container: {fileID: 1706376763}
+  MazePlayer1: {fileID: 1950589436}
+  MazePlayer2: {fileID: 701089168}
+  FinishTriggerPrefab: {fileID: 1215419093590882465, guid: efac191b18f861b4eafb466301ce4ab0, type: 3}
+--- !u!4 &687733271
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 687733269}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -88.70084, y: 14.211424, z: 0.06603205}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &701089168 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1699641574215154472, guid: b5c4b1f8ccb29f842bd8e29c27e33448, type: 3}
@@ -1087,6 +1150,7 @@ GameObject:
   - component: {fileID: 1310242619}
   - component: {fileID: 1310242618}
   - component: {fileID: 1310242617}
+  - component: {fileID: 1310242621}
   m_Layer: 0
   m_Name: Camera Player 2
   m_TagString: Untagged
@@ -1145,7 +1209,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1310242616}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1310242619
 Camera:
   m_ObjectHideFlags: 0
@@ -1212,6 +1276,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 226769447}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1310242621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1310242616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca0c505f2e913fb4287dad25dc7f959f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 701089168}
 --- !u!1001 &1597701754
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1759,7 +1836,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1998004318}
   - component: {fileID: 1998004319}
-  - component: {fileID: 1998004320}
   m_Layer: 0
   m_Name: 'GAME MANAGER '
   m_TagString: Untagged
@@ -1796,22 +1872,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player1: {fileID: 13044862}
   player2: {fileID: 226769446}
---- !u!114 &1998004320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1998004317}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 769bbcdd6c11a994b8e31c8dabb7e3f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maze1StartPosition: {x: -1000, y: 0, z: 0}
-  maze2StartPosition: {x: -900, y: 0, z: 0}
-  MazePlayer1: {fileID: 1950589436}
-  MazePlayer2: {fileID: 701089168}
 --- !u!1 &2024062579
 GameObject:
   m_ObjectHideFlags: 0
@@ -2191,3 +2251,4 @@ SceneRoots:
   - {fileID: 454817312}
   - {fileID: 3913617499342844072}
   - {fileID: 276324794}
+  - {fileID: 687733271}
