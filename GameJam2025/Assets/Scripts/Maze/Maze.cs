@@ -78,7 +78,7 @@ public class Maze : MonoBehaviour
         this.start = this.tiles[0, this.size / 2];
         this.end = this.tiles[this.size - 1, this.size / 2];
 
-        this.start.MakeWalkable(Direction.Left);
+        //this.start.MakeWalkable(Direction.Left);
         this.end.MakeWalkable(Direction.Right);
 
         this.start.isMainPath = true;
