@@ -48,6 +48,16 @@ public class Maze : MonoBehaviour
         return this.GetTile(tile.x + dx, tile.y + dy);
     }
 
+    public Tile GetStartTile()
+    {
+        return this.start;
+    }
+
+    public Tile GetFinishTile()
+    {
+        return this.end;
+    }
+
     private Tile start;
     private Tile end;
     public void SetAttribute(int size, int randSteps, double perturbationChance)
@@ -309,6 +319,46 @@ public class Maze : MonoBehaviour
         return x >= 0 && x < this.size && y >= 0 && y < this.size;
     }
 
+    public int? GetLengthOfBestRoute(Tile tile1, Tile tile2)
+    {
+        List<Tile> res = new List<Tile>();
+
+        Queue<Tile> queue = new Queue<Tile>();
+
+        Dictionary<Tile, Tile> prev = new Dictionary<Tile, Tile>();
+
+        queue.Enqueue(tile1);
+
+
+        while (queue.Count > 0)
+        {
+            Tile current = queue.Dequeue();
+            if (current == tile2)
+            {
+                while (current != tile1)
+                {
+                    res.Add(current);
+                    current = prev[current];
+                }
+                res.Add(tile1);
+                res.Reverse();
+                return res.Count;
+            }
+            foreach (Direction direction in current.PossibleDirections().Where(direction => current.walkable[direction]).ToList())
+            {
+                Tile nextTile = this.ApplyDirection(current, direction);
+                if (nextTile != null && !prev.Keys.Contains(nextTile))
+                {
+                    prev[nextTile] = current;
+                    queue.Enqueue(nextTile);
+                }
+            }
+        }
+
+        return null;
+    }
+
+
     private List<Tile>? GetPath(Tile tile1, Tile tile2)
     {
         List<Tile> res = new List<Tile>();
@@ -369,6 +419,18 @@ public class Maze : MonoBehaviour
             path[i + 1].MakeWalkable(direction.Opposite());
 
         }
+    }
+
+    public int GetBestSolutionLength()
+    {
+        int? length = GetLengthOfBestRoute(this.start, this.end);
+
+        if (length == null)
+        {
+            throw new Exception("No path found between the start and end tiles.");
+        }
+        return length.Value;
+
     }
 
     public void PrintMaze()
