@@ -39,4 +39,9 @@ public class CollectibleController : MonoBehaviour
         yield return new WaitForSeconds(seconds);
         Destroy(gameObject);
     }
+
+    public float GetFrequency()
+    {
+        return frequency;
+    }
 }

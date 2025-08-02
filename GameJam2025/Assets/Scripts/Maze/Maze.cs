@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 public class Maze : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class Maze : MonoBehaviour
         
     }
 
+    private const float NEXT_ITEM_DISTANCE_WEIGHT =2f;
     private int size { get; set; }
     private Tile[,] tiles { get; set; }
     private Tile GetTile(int x, int y)
@@ -448,4 +450,94 @@ public class Maze : MonoBehaviour
             }
         }
     }
+
+    private void CalculateDistanceForTiles(Tile startTile, Action<int, Tile> attributeSetter, Func<Tile, int> attributeGetter)
+    {
+
+        Queue<Tile> queue = new Queue<Tile>();
+
+        List<Tile> prev = new List<Tile>();
+
+        queue.Enqueue(startTile);
+
+        attributeSetter(0, startTile);
+
+
+        while (queue.Count > 0)
+        {
+            Tile current = queue.Dequeue();
+            foreach (Direction direction in current.PossibleDirections().Where(direction => current.walkable[direction]).ToList())
+            {
+                Tile nextTile = this.ApplyDirection(current, direction);
+                if (nextTile != null && !prev.Contains(nextTile))
+                {
+                    prev.Add(current);
+                    queue.Enqueue(nextTile);
+                    attributeSetter(attributeGetter(current) + 1, nextTile);
+                }
+            }
+        }
+
+    }
+
+
+    public void SpawnCollectibles(List<GameObject> collectibles)
+    {
+
+        collectibles = collectibles.OrderBy(x => x.GetComponent<CollectibleController>().GetFrequency()).ToList();
+        Queue<GameObject> collectiblesQueue = new Queue<GameObject>(collectibles);
+        Dictionary<Tile, TileStats> tileStatsMap = new Dictionary<Tile, TileStats>();
+
+        for (int i = 0; i < this.size; i++)
+        {
+            for (int j = 0; j < this.size; j++)
+            {
+                tileStatsMap[tiles[i, j]] = new TileStats();
+            }
+        }
+
+        CalculateDistanceForTiles(this.start, (int distance, Tile tile) => tileStatsMap[tile].distanceToStart = distance, tile => tileStatsMap[tile].distanceToStart);
+        CalculateDistanceForTiles(this.end, (int distance, Tile tile) => tileStatsMap[tile].distanceToEnd = distance, tile => tileStatsMap[tile].distanceToEnd);
+
+        List<Tile> unreachableTiles = new List<Tile>();
+
+        foreach (Tile tile in tileStatsMap.Keys)
+        {
+            if (tileStatsMap[tile].distanceToStart == -1 || tileStatsMap[tile].distanceToEnd == -1)
+            {
+                unreachableTiles.Add(tile);
+            }
+        }
+
+        foreach (var tile in unreachableTiles)
+        {
+            tileStatsMap.Remove(tile);
+        }
+
+        while (collectiblesQueue.Count > 0 && tileStatsMap.Count > 0)
+        {
+            Tile bestTile = tileStatsMap.OrderBy((k) => k.Value.distanceToStart + k.Value.distanceToEnd + k.Value.distanceToNextItem * NEXT_ITEM_DISTANCE_WEIGHT).Reverse().First().Key;
+            Instantiate(collectiblesQueue.Dequeue(), bestTile.transform);
+            CalculateDistanceForTiles(bestTile, (int distance, Tile tile) =>
+            {
+                if (tileStatsMap.ContainsKey(tile))
+                {
+                    tileStatsMap[tile].distanceToNextItem = tileStatsMap[tile].distanceToNextItem == -1
+                        ? distance
+                        : Math.Min(distance, tileStatsMap[tile].distanceToNextItem);
+                }
+            }, tile => tileStatsMap.ContainsKey(tile) ? tileStatsMap[tile].distanceToNextItem : 0);
+            tileStatsMap.Remove(bestTile);
+        }
+
+    }
+
+
+}
+
+class TileStats
+{
+    public int distanceToStart { get; set; } = -1;
+    public int distanceToEnd { get; set; } = -1;
+    public int distanceToNextItem { get; set; } = -1;
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -26,12 +27,14 @@ public class LevelManager : MonoBehaviour
     public GameObject MazePlayer1;
     public GameObject MazePlayer2;
 
-    public Tile StartingTilePlayer1;
-    public Tile StartingTilePlayer2;
-    public Tile FinishingTilePlayer1;
-    public Tile FinishingTilePlayer2;
+    public Tile StartingTilePlayer1 { get; private set; }
+    public Tile StartingTilePlayer2 { get; private set; }
+    public Tile FinishingTilePlayer1 { get; private set; }
+    public Tile FinishingTilePlayer2 { get; private set; }
 
     public GameObject FinishTriggerPrefab;
+
+    public List<GameObject> CollectiblePrefabs;
 
     public delegate void FinishReachedDelegate();
 
@@ -47,6 +50,9 @@ public class LevelManager : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+
+        GameManager.Instance.player1.ResetStats();
+        GameManager.Instance.player2.ResetStats();
     }
 
     public IEnumerator StartRound()
@@ -127,9 +133,44 @@ public class LevelManager : MonoBehaviour
         trigger1.GetComponent<FinishReachedScript>().SetDelegate(delegate1);
         trigger2.GetComponent<FinishReachedScript>().SetDelegate(delegate2);
 
+        List<GameObject> collectibles = DetermineCollectiblesInMaze(10);
+
+        maze1.SpawnCollectibles(collectibles);
+        maze2.SpawnCollectibles(collectibles);
+
 
         GameManager.Instance.FreezePlayers(false);
 
+    }
+
+    private GameObject GetRandomCollectiblePrefab()
+    {
+        List<CollectibleController> controllers =
+            CollectiblePrefabs.Select(x => x.GetComponent<CollectibleController>()).ToList();
+        float weightSum = controllers.Select(x => x.GetFrequency()).Aggregate((x, y) => (x + y));
+        float randomValue = Random.Range(0.0f, weightSum);
+        float currentWeight = 0.0f;
+        for (int i = 0; i < CollectiblePrefabs.Count; i++)
+        {
+            CollectibleController controller = controllers[i];
+            currentWeight += controller.GetFrequency();
+            if (currentWeight >= randomValue)
+            {
+                return CollectiblePrefabs[i];
+            }
+        }
+        throw new Exception("No collectible found with the given frequency distribution.");
+    }
+
+
+    private List<GameObject> DetermineCollectiblesInMaze(int amount)
+    {
+        List<GameObject> collectibles = new List<GameObject>();
+        for (int i = 0; i < amount; i++)
+        {
+            collectibles.Add(GetRandomCollectiblePrefab());
+        }
+        return collectibles;
     }
 
     void Start()

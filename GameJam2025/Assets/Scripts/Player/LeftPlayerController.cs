@@ -9,9 +9,6 @@ public class LeftPlayerController : MonoBehaviour
 
     [SerializeField]
     private GameObject otherPlayer;
-    [SerializeField]
-    private GameObject thisPlayer;
-
     public float moveSpeed = 3f;
 
     private Vector2 moveDirection;
@@ -25,7 +22,7 @@ public class LeftPlayerController : MonoBehaviour
     void Start()
     {
         otherPlayerManager = otherPlayer.GetComponent<PlayerManager>();
-        thisPlayerManager = thisPlayer.GetComponent<PlayerManager>();
+        thisPlayerManager = transform.parent.gameObject.GetComponent<PlayerManager>();
     }
 
     public void Freeze(bool freeze)

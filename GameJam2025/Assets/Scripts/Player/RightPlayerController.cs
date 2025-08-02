@@ -8,8 +8,6 @@ public class RightPlayerController : MonoBehaviour
 
     [SerializeField]
     private GameObject otherPlayer;
-    [SerializeField]
-    private GameObject thisPlayer;
 
     public float moveSpeed = 3f;
 
@@ -23,7 +21,7 @@ public class RightPlayerController : MonoBehaviour
     void Start()
     {
         otherPlayerManager = otherPlayer.GetComponent<PlayerManager>();
-        thisPlayerManager = thisPlayer.GetComponent<PlayerManager>();
+        thisPlayerManager = transform.parent.gameObject.GetComponent<PlayerManager>();
     }
 
     public void Freeze(bool freeze)
