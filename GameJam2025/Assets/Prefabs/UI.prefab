@@ -1293,7 +1293,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -480, y: 400}
+  m_AnchoredPosition: {x: -480, y: 474}
   m_SizeDelta: {x: 300, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1798077214977380817
@@ -1426,7 +1426,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 480, y: 400}
+  m_AnchoredPosition: {x: 480, y: 474}
   m_SizeDelta: {x: 300, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4611855083610999094
@@ -2598,6 +2598,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSlider: {fileID: 8572056383741884545}
+  animator: {fileID: 4190839633402882280}
 --- !u!1 &8226639991918595246
 GameObject:
   m_ObjectHideFlags: 0
@@ -3101,3 +3102,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSlider: {fileID: 4035273467065394759}
+  animator: {fileID: 7580584643402754324}
