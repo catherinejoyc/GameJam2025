@@ -18,10 +18,8 @@ public class GameManager : MonoBehaviour
 
     }
 
-    [SerializeField]
-    private PlayerManager player1;
-    [SerializeField]
-    private PlayerManager player2;
+    public PlayerManager player1;
+    public PlayerManager player2;
 
     public void Player1FinishesMaze()
     {

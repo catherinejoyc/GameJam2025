@@ -116,37 +116,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: IncreaseView_0
-      rect:
-        serializedVersion: 2
-        x: 90
-        y: 142
-        width: 66
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6504c08807ab10910800000000000000
-      internalID: 1801926318406516822
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: IncreaseView_1
       rect:
         serializedVersion: 2
-        x: 146
+        x: 89
         y: 134
-        width: 26
-        height: 54
+        width: 83
+        height: 55
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -163,7 +141,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 0db7aa28b4c063f428fc60345a79da1c
     internalID: 0
     vertices: []
     indices: 

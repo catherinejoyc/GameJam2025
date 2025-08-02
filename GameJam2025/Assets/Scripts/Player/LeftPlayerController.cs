@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class LeftPlayerController : MonoBehaviour
 {
+    public bool isConfused = false;
+
     [SerializeField]
     private float moveSpeed = 3f;
     private Vector2 moveDirection;
@@ -24,7 +26,18 @@ public class LeftPlayerController : MonoBehaviour
             vertical = 0;
         }
 
+        if (isConfused)
+        {
+            horizontal = -horizontal;
+            vertical = -vertical;
+        }
+
         moveDirection = new Vector2(horizontal, vertical).normalized;
         transform.Translate(moveSpeed * Time.deltaTime * moveDirection);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
     }
 }

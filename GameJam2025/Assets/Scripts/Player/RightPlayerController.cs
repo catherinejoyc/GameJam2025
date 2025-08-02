@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class RightPlayerController : MonoBehaviour
 {
+    public bool isConfused = false;
+
     [SerializeField]
     private float moveSpeed = 3f;
     private Vector2 moveDirection;
@@ -26,6 +28,11 @@ public class RightPlayerController : MonoBehaviour
 
         moveDirection = new Vector2(horizontal, vertical).normalized;
         transform.Translate(moveSpeed * Time.deltaTime * moveDirection);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
     }
 
 }
