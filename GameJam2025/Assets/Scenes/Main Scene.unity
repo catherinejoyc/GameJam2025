@@ -264,6 +264,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blue Slime
       objectReference: {fileID: 0}
+    - target: {fileID: 1001792278502774874, guid: 070aba768ce5485458fc8813cbd0d039, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3605702325012916474, guid: 070aba768ce5485458fc8813cbd0d039, type: 3}
       propertyPath: m_SortingLayer
       value: 4
@@ -1278,6 +1282,10 @@ PrefabInstance:
     - target: {fileID: 1668755058513362334, guid: 8182042d5be803d418a2005e7eebfe59, type: 3}
       propertyPath: m_Name
       value: Red Slime
+      objectReference: {fileID: 0}
+    - target: {fileID: 1668755058513362334, guid: 8182042d5be803d418a2005e7eebfe59, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2426351622097852311, guid: 8182042d5be803d418a2005e7eebfe59, type: 3}
       propertyPath: m_SortingLayer
@@ -2411,6 +2419,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 268321934990860575, guid: 8bf335559b3eba64382b7f219fbb7223, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1998004319}
+    - target: {fileID: 268321934990860575, guid: 8bf335559b3eba64382b7f219fbb7223, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Player1FinishesMaze
+      objectReference: {fileID: 0}
     - target: {fileID: 834886491869099706, guid: 8bf335559b3eba64382b7f219fbb7223, type: 3}
       propertyPath: m_Name
       value: UI
@@ -2494,6 +2510,14 @@ PrefabInstance:
     - target: {fileID: 7199385789206727407, guid: 8bf335559b3eba64382b7f219fbb7223, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7563723540364719469, guid: 8bf335559b3eba64382b7f219fbb7223, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1998004319}
+    - target: {fileID: 7563723540364719469, guid: 8bf335559b3eba64382b7f219fbb7223, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Player2FinishesMaze
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

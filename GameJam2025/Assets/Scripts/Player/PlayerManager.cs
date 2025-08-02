@@ -18,6 +18,7 @@ public class PlayerManager : MonoBehaviour
 
     public float DealDamage()
     {
+        playerUI.AttackAnimation();
         return playerStats.damage;
     }
 }

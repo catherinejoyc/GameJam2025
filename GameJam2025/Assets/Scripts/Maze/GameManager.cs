@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -25,16 +26,33 @@ public class GameManager : MonoBehaviour
 
     public void Player1FinishesMaze()
     {
-        player2.TakeDamage(player1.DealDamage());
-        Debug.Log($"Player 1 dealt {player1.DealDamage()} damage");
-        LevelManager.Instance.StartRound();
+        StartCoroutine(FinishMazePlayer1());
     }
+
+    
 
     public void Player2FinishesMaze()
     {
-        player1.TakeDamage(player2.DealDamage());
-        Debug.Log($"Player 2 dealt {player1.DealDamage()} damage");
-        LevelManager.Instance.StartRound();
+        StartCoroutine(FinishMazePlayer2());
+    }
 
+    IEnumerator FinishMazePlayer1()
+    {
+        var damage = player1.DealDamage();
+        yield return new WaitForSeconds(0.5f);
+        player2.TakeDamage(damage);
+        Debug.Log($"Player 1 dealt {damage} damage");
+        yield return new WaitForSeconds(1f);
+        LevelManager.Instance.StartRound();
+    }
+
+    IEnumerator FinishMazePlayer2()
+    {
+        var damage = player2.DealDamage();
+        yield return new WaitForSeconds(0.5f);
+        player1.TakeDamage(damage);
+        Debug.Log($"Player 2 dealt {damage} damage");
+        yield return new WaitForSeconds(1f);
+        LevelManager.Instance.StartRound();
     }
 }
