@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     {
         player2.TakeDamage(player1.DealDamage());
         Debug.Log($"Player 1 dealt {player1.DealDamage()} damage");
+        player2.ResetStats();
         LevelManager.Instance.StartRound();
     }
 
@@ -32,6 +33,7 @@ public class GameManager : MonoBehaviour
     {
         player1.TakeDamage(player2.DealDamage());
         Debug.Log($"Player 2 dealt {player1.DealDamage()} damage");
+        player1.ResetStats();
         LevelManager.Instance.StartRound();
 
     }

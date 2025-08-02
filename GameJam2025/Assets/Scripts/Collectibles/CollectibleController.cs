@@ -1,7 +1,8 @@
 using Assets.Scripts.Collectibles;
+using System.Collections;
 using UnityEngine;
 
-public class FloatingAnimation : MonoBehaviour
+public class CollectibleController : MonoBehaviour
 {
     public Effects effect = Effects.None;
 
@@ -24,5 +25,18 @@ public class FloatingAnimation : MonoBehaviour
         Vector3 pos = transform.position;
         pos.y = originalY + Mathf.Sin(Time.time * frequency) * height;
         transform.position = pos;
+    }
+
+    public void TriggerDespawn()
+    {
+        var animation = transform.GetChild(2);
+        animation.gameObject.SetActive(true);
+        StartCoroutine(DestroyAfterSeconds(0.3f));
+    }
+
+    IEnumerator DestroyAfterSeconds(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        Destroy(gameObject);
     }
 }
