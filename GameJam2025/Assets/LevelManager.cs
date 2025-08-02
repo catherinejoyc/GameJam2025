@@ -26,6 +26,11 @@ public class LevelManager : MonoBehaviour
     public GameObject MazePlayer1;
     public GameObject MazePlayer2;
 
+    public Tile StartingTilePlayer1;
+    public Tile StartingTilePlayer2;
+    public Tile FinishingTilePlayer1;
+    public Tile FinishingTilePlayer2;
+
     public GameObject FinishTriggerPrefab;
 
     public delegate void FinishReachedDelegate();
@@ -96,9 +101,10 @@ public class LevelManager : MonoBehaviour
             Destroy(maze.gameObject);
         }
 
-
-        MazePlayer1.transform.position = maze1.GetStartTile().transform.position;
-        MazePlayer2.transform.position = maze2.GetStartTile().transform.position;
+        this.StartingTilePlayer1 = maze1.GetStartTile();
+        this.StartingTilePlayer2 = maze2.GetStartTile();
+        MazePlayer1.transform.position = this.StartingTilePlayer1.transform.position;
+        MazePlayer2.transform.position = this.StartingTilePlayer2.transform.position;
 
         Debug.Log(maze1.GetBestSolutionLength());
         Debug.Log(maze2.GetBestSolutionLength());
@@ -108,6 +114,9 @@ public class LevelManager : MonoBehaviour
 
         delegate1 += GameManager.Instance.Player1FinishesMaze;
         delegate2 += GameManager.Instance.Player2FinishesMaze;
+
+        this.FinishingTilePlayer1 = maze1.GetFinishTile();
+        this.FinishingTilePlayer2 = maze2.GetFinishTile();
 
         GameObject trigger1 = Instantiate(FinishTriggerPrefab, maze1.GetFinishTile().transform.position + Vector3.right,
             Quaternion.identity,
@@ -122,6 +131,7 @@ public class LevelManager : MonoBehaviour
         GameManager.Instance.FreezePlayers(false);
 
     }
+
     void Start()
     {
         GameManager.Instance.FreezePlayers(true);
