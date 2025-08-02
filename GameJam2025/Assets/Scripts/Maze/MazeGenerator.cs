@@ -63,7 +63,6 @@ public class MazeGenerator : MonoBehaviour
         maze.SetAttribute(size, randSteps, perturbationChance);
         return maze;
     }
-
 }
 
 
