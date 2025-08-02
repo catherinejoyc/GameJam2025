@@ -6,6 +6,7 @@ public class PlayerManager : MonoBehaviour
     public PlayerStats playerStats;
     public PlayerUI playerUI;
     public GameObject mazePlayerObject;
+    public GameObject blockPrefab;
 
     public void TakeDamage(float damage)
     {
@@ -28,11 +29,42 @@ public class PlayerManager : MonoBehaviour
         //When round ends
         RemoveConfused();
         playerStats.ResetStats();
+
+        var left = mazePlayerObject.GetComponent<LeftPlayerController>();
+        if (left != null)
+        {
+            left.moveSpeed = 3.0f;
+            return;
+        }
+
+        var right = mazePlayerObject.GetComponent<RightPlayerController>();
+        if (right != null)
+        {
+            right.moveSpeed = 3.0f;
+            return;
+        }
+
+        Debug.LogWarning("No player controller found on maze player!");
     }
 
     public void IncreaseSpeed(int amount)
     {
         playerStats.speed += amount;
+        var left = mazePlayerObject.GetComponent<LeftPlayerController>();
+        if (left != null)
+        {
+            left.moveSpeed += amount;
+            return;
+        }
+
+        var right = mazePlayerObject.GetComponent<RightPlayerController>();
+        if (right != null)
+        {
+            right.moveSpeed += amount;
+            return;
+        }
+
+        Debug.LogWarning("No player controller found on maze player!");
     }
 
     public void DecreaseSpeed(int amount)
@@ -41,6 +73,22 @@ public class PlayerManager : MonoBehaviour
         { 
             playerStats.speed -= amount; 
         }
+
+        var left = mazePlayerObject.GetComponent<LeftPlayerController>();
+        if (left != null)
+        {
+            left.moveSpeed -= amount;
+            return;
+        }
+
+        var right = mazePlayerObject.GetComponent<RightPlayerController>();
+        if (right != null)
+        {
+            right.moveSpeed -= amount;
+            return;
+        }
+
+        Debug.LogWarning("No player controller found on maze player!");
     }
 
     public void Heal(int amount)
@@ -140,7 +188,7 @@ public class PlayerManager : MonoBehaviour
 
     public void BlockExit(PlayerType forPlayer)
     {
-        Tile tileToGet;
+        var tileToGet = new Tile();
         switch (forPlayer)
         {
             case PlayerType.Player1:
@@ -150,6 +198,7 @@ public class PlayerManager : MonoBehaviour
                 tileToGet = LevelManager.Instance.FinishingTilePlayer2;
                 break;
         }
-        //place blocker at the end of maze
+        var position = tileToGet.transform.position;
+        Instantiate(blockPrefab, position, tileToGet.transform.rotation);
     }
 }

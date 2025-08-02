@@ -11,8 +11,7 @@ public class RightPlayerController : MonoBehaviour
     [SerializeField]
     private GameObject thisPlayer;
 
-    [SerializeField]
-    private float moveSpeed = 3f;
+    public float moveSpeed = 3f;
 
     private Vector2 moveDirection;
     private PlayerManager otherPlayerManager;

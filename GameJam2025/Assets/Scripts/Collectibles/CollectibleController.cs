@@ -17,7 +17,7 @@ public class CollectibleController : MonoBehaviour
     void Start()
     {
         originalY = transform.position.y;
-    }
+    } 
 
     // Update is called once per frame
     void Update()
