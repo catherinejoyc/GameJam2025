@@ -148,8 +148,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e03c4b7059c18d4b9773b07e2ece1a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: 0
   playerStats: {fileID: 11400000, guid: ae3fa54535796f44983dd7a41a530f16, type: 2}
   playerUI: {fileID: 4402868533642293174}
+  playerCamera: {fileID: 0}
+  mazePlayerObject: {fileID: 1950589436}
+  blockPrefab: {fileID: 4977972108217605724, guid: b7ea43a0a6ceae64fa3635e904713088, type: 3}
 --- !u!4 &13044863
 Transform:
   m_ObjectHideFlags: 0
@@ -362,8 +366,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e03c4b7059c18d4b9773b07e2ece1a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: 0
   playerStats: {fileID: 11400000, guid: 3f69e08c1e074494eb5ae6fba1121ff7, type: 2}
   playerUI: {fileID: 483340918}
+  playerCamera: {fileID: 0}
+  mazePlayerObject: {fileID: 701089168}
+  blockPrefab: {fileID: 4977972108217605724, guid: b7ea43a0a6ceae64fa3635e904713088, type: 3}
 --- !u!4 &226769447
 Transform:
   m_ObjectHideFlags: 0
@@ -1123,6 +1131,19 @@ MonoBehaviour:
   MazePlayer1: {fileID: 1950589436}
   MazePlayer2: {fileID: 701089168}
   FinishTriggerPrefab: {fileID: 1215419093590882465, guid: efac191b18f861b4eafb466301ce4ab0, type: 3}
+  CollectiblePrefabs:
+  - {fileID: 1051104842539264834, guid: 3bb519321814bba459f4790fae6f283b, type: 3}
+  - {fileID: 7775599641948150619, guid: 5fb33e8938e2165459b167e14d0ad4d8, type: 3}
+  - {fileID: 1501944164309969957, guid: b751abf13c867a64dbc79fb009798e5f, type: 3}
+  - {fileID: 1178138914765744149, guid: 567a1f899a9de9a4eb29c19febda53a3, type: 3}
+  - {fileID: 9121702114615170310, guid: af15c473261ea914f8d25f97faa10584, type: 3}
+  - {fileID: 820730054651838158, guid: 86049baf4e4018b4496f5a510827c86f, type: 3}
+  - {fileID: 3382986735772108606, guid: 4e510dfa34c92e3499877df596854bfd, type: 3}
+  - {fileID: 1780856132049955210, guid: e93246867b0c0c94d8fa8d9067154cba, type: 3}
+  - {fileID: 5708158303494525422, guid: 96b086ef84031ba49bb1afbafd7a24c0, type: 3}
+  - {fileID: 53488680433868268, guid: 0d6637952a3b089499d006fe679e054a, type: 3}
+  - {fileID: 6192822059715926972, guid: 3c931a73cf759ba40ac67bba5aafb75a, type: 3}
+  - {fileID: 5007855824203091769, guid: c6c9ad81ddcd32f46800a196bbdab56d, type: 3}
 --- !u!4 &687733271
 Transform:
   m_ObjectHideFlags: 0
@@ -1412,6 +1433,10 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: 198291353
       objectReference: {fileID: 0}
+    - target: {fileID: 8118635298730711991, guid: b5c4b1f8ccb29f842bd8e29c27e33448, type: 3}
+      propertyPath: otherPlayer
+      value: 
+      objectReference: {fileID: 13044861}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2039,6 +2064,10 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: 198291353
       objectReference: {fileID: 0}
+    - target: {fileID: 676884626382711931, guid: e487d708b4ab23e49a207bc632897704, type: 3}
+      propertyPath: otherPlayer
+      value: 
+      objectReference: {fileID: 226769445}
     - target: {fileID: 5713701721218603873, guid: e487d708b4ab23e49a207bc632897704, type: 3}
       propertyPath: m_Name
       value: Mini Red
@@ -2427,6 +2456,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Player1FinishesMaze
       objectReference: {fileID: 0}
+    - target: {fileID: 697370751585824389, guid: 8bf335559b3eba64382b7f219fbb7223, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 697370751585824389, guid: 8bf335559b3eba64382b7f219fbb7223, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 697370751585824389, guid: 8bf335559b3eba64382b7f219fbb7223, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 834886491869099706, guid: 8bf335559b3eba64382b7f219fbb7223, type: 3}
       propertyPath: m_Name
       value: UI
@@ -2499,6 +2540,26 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5326613397800454410, guid: 8bf335559b3eba64382b7f219fbb7223, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5326613397800454410, guid: 8bf335559b3eba64382b7f219fbb7223, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5326613397800454410, guid: 8bf335559b3eba64382b7f219fbb7223, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6025344568087495119, guid: 8bf335559b3eba64382b7f219fbb7223, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6025344568087495119, guid: 8bf335559b3eba64382b7f219fbb7223, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7199385789206727407, guid: 8bf335559b3eba64382b7f219fbb7223, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2518,6 +2579,14 @@ PrefabInstance:
     - target: {fileID: 7563723540364719469, guid: 8bf335559b3eba64382b7f219fbb7223, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Player2FinishesMaze
+      objectReference: {fileID: 0}
+    - target: {fileID: 7585619304873326400, guid: 8bf335559b3eba64382b7f219fbb7223, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7585619304873326400, guid: 8bf335559b3eba64382b7f219fbb7223, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
