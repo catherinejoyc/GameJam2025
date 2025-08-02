@@ -59,11 +59,19 @@ public class PlayerManager : MonoBehaviour
           }
     }
 
+    private void UpdateUI()
+    {
+        playerUI.UpdateHealth(playerStats.health);
+        playerUI.UpdateViewGauge(playerStats.viewGauge);
+    }
+
     public void ResetStats()
     {
         //When round ends
         RemoveConfused();
         playerStats.ResetStats();
+
+        UpdateUI();
 
         var left = mazePlayerObject.GetComponent<LeftPlayerController>();
         if (left != null)

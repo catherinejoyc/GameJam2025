@@ -15,5 +15,6 @@ public class PlayerStats : ScriptableObject
         damage = 1;
         speed = 1;
         shield = 0;
+        viewGauge = 100;
     }
 }
