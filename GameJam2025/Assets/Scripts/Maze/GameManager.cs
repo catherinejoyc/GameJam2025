@@ -38,21 +38,32 @@ public class GameManager : MonoBehaviour
 
     IEnumerator FinishMazePlayer1()
     {
+        FreezePlayers(true);
         var damage = player1.DealDamage();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
         player2.TakeDamage(damage);
         Debug.Log($"Player 1 dealt {damage} damage");
         yield return new WaitForSeconds(1f);
-        LevelManager.Instance.StartRound();
+        StartCoroutine(LevelManager.Instance.StartRound());
     }
 
     IEnumerator FinishMazePlayer2()
     {
+        FreezePlayers(true);
         var damage = player2.DealDamage();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
         player1.TakeDamage(damage);
         Debug.Log($"Player 2 dealt {damage} damage");
         yield return new WaitForSeconds(1f);
-        LevelManager.Instance.StartRound();
+        StartCoroutine(LevelManager.Instance.StartRound());
+    }
+
+    public void FreezePlayers(bool freeze)
+    {
+        var movement1 = player1.gameObject.GetComponentInChildren<LeftPlayerController>();
+        var movement2 = player2.gameObject.GetComponentInChildren<RightPlayerController>();
+
+        movement1.Freeze(freeze);
+        movement2.Freeze(freeze);
     }
 }

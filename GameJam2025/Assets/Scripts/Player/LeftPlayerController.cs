@@ -6,15 +6,24 @@ public class LeftPlayerController : MonoBehaviour
     private float moveSpeed = 3f;
     private Vector2 moveDirection;
 
+    private bool frozen = false;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
 
     }
 
+    public void Freeze(bool freeze)
+    {
+        frozen = freeze;
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if (frozen) return;
         float horizontal = Input.GetAxisRaw("Horizontal Left");
         float vertical = Input.GetAxisRaw("Vertical Left");
 

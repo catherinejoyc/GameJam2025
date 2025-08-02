@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -43,7 +44,7 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public void StartRound()
+    public IEnumerator StartRound()
     {
         CleanUp();
         List<Maze> mazes = new List<Maze>();
@@ -51,6 +52,7 @@ public class LevelManager : MonoBehaviour
         for (int i = 0; i < _numberOfMazes; i++)
         {
             mazes.Add(MazeGenerator.Instance.GenerateMaze(gameObject));
+            yield return null;
             mazeLengths.Add(mazes[i], mazes[i].GetBestSolutionLength());
         }
 
@@ -115,10 +117,15 @@ public class LevelManager : MonoBehaviour
             Maze2Container.transform);
         trigger1.GetComponent<FinishReachedScript>().SetDelegate(delegate1);
         trigger2.GetComponent<FinishReachedScript>().SetDelegate(delegate2);
+
+
+        GameManager.Instance.FreezePlayers(false);
+
     }
     void Start()
     {
-        StartRound();
+        GameManager.Instance.FreezePlayers(true);
+        StartCoroutine(StartRound());
 
     }
 
