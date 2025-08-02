@@ -15,3 +15,4 @@ MonoBehaviour:
   health: 100
   damage: 1
   speed: 3
+  viewGauge: 100

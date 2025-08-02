@@ -7,6 +7,8 @@ public class PlayerUI : MonoBehaviour
     [SerializeField]
     private Slider healthSlider;
     [SerializeField]
+    private Slider viewGaugeSlider;
+    [SerializeField]
     private Animator animator;
 
     public void UpdateHealth(float health)
@@ -21,5 +23,10 @@ public class PlayerUI : MonoBehaviour
     public void AttackAnimation()
     {
         animator.SetTrigger("IsAttacking");
+    }
+    
+    public void UpdateViewGauge(float value)
+    {
+        viewGaugeSlider.value = value < 0 ? 0 : value / 100;
     }
 }
