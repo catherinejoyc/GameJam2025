@@ -199,7 +199,7 @@ public class PlayerManager : MonoBehaviour
 
     private void UseViewGauge()
     {
-        if (playerStats.viewGauge < 15)
+        if (playerStats.viewGauge < 5)
         {
             ResetViewGauge();
             return;
