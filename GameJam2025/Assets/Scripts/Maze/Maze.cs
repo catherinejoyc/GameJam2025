@@ -19,7 +19,7 @@ public class Maze : MonoBehaviour
         
     }
 
-    private const float NEXT_ITEM_DISTANCE_WEIGHT =2f;
+    private const float NEXT_ITEM_DISTANCE_WEIGHT =4f;
     private int size { get; set; }
     private Tile[,] tiles { get; set; }
     private List<Tile> hardToReachTiles = new List<Tile>();

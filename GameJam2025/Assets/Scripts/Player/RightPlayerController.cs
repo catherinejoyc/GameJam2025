@@ -94,7 +94,7 @@ public class RightPlayerController : MonoBehaviour
                 otherPlayerManager.AddEffectToList(collectibleEffect);
                 break;
             case Effects.ResetStartDebuff:
-                otherPlayerManager.ResetToStart(PlayerType.Player2);
+                otherPlayerManager.ResetToStart(PlayerType.Player1);
                 otherPlayerManager.AddEffectToList(collectibleEffect);
                 break;
             case Effects.Heal:
@@ -106,7 +106,7 @@ public class RightPlayerController : MonoBehaviour
                 otherPlayerManager.AddEffectToList(collectibleEffect);
                 break;
             case Effects.BlockExitDebuff:
-                otherPlayerManager.BlockExit(PlayerType.Player2);
+                otherPlayerManager.BlockExit(PlayerType.Player1);
                 otherPlayerManager.AddEffectToList(collectibleEffect);
                 break;
         }

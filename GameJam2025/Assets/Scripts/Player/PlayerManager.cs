@@ -19,6 +19,8 @@ public class PlayerManager : MonoBehaviour
     public GameObject blockPrefab;
     public List<Effects> currentEffects = new List<Effects>();
 
+    public GameObject switchPrefab;
+
     public void TakeDamage(float damage)
     {
         var newHealth = playerStats.health + playerStats.shield - damage;
@@ -124,8 +126,8 @@ public class PlayerManager : MonoBehaviour
     public void DecreaseSpeed(int amount)
     {
         if(playerStats.speed > 0)
-        { 
-            playerStats.speed -= amount; 
+        {
+            playerStats.speed -= amount;
         }
 
         var left = mazePlayerObject.GetComponent<LeftPlayerController>();
@@ -195,19 +197,19 @@ public class PlayerManager : MonoBehaviour
         }
 
         var newValue = playerStats.viewGauge - Time.deltaTime * 10;
-        playerStats.viewGauge = newValue < 0 ? 0 : newValue; 
+        playerStats.viewGauge = newValue < 0 ? 0 : newValue;
         playerUI.UpdateViewGauge(newValue);
     }
 
     private void ResetViewGauge()
     {
-        if (playerCamera.transform.localPosition.z < -7)
+        if (playerCamera.transform.localPosition.z < -playerStats.zoom)
         {
-            var moveDistance = 7 + playerCamera.transform.localPosition.z;
+            var moveDistance = playerStats.zoom + playerCamera.transform.localPosition.z;
             playerCamera.transform.Translate(Vector3.back * Time.deltaTime * moveDistance);
         }
     }
-    
+
     public void MakeConfused()
     {
         // Check if left or right player and set confused
@@ -249,37 +251,49 @@ public class PlayerManager : MonoBehaviour
 
     public void IncreaseView()
     {
-        playerStats.viewGauge = 100;
+        playerStats.viewGauge += 30;
+        playerStats.viewGauge = Mathf.Min(100, playerStats.viewGauge);
+        UpdateUI();
     }
 
     public void DecreaseView(int amount)
     {
         playerStats.viewGauge = playerStats.viewGauge - amount < 0 ? 0 : playerStats.viewGauge - amount;
+        UpdateUI();
+
     }
 
     public void ZoomOutBuff()
     {
-        //Only until round ends
+        playerStats.zoom += 2;
     }
 
     public void ZoomInDebuff()
     {
-
+        playerStats.zoom -= 2;
+        playerStats.zoom = Mathf.Max(1, playerStats.zoom); // Ensure zoom does not go below 1
     }
 
     public void BlockExit(PlayerType forPlayer)
     {
         var tileToGet = new Tile();
+        var switchTile = new Tile();
+        Maze maze = null;
         switch (forPlayer)
         {
             case PlayerType.Player1:
                 tileToGet = LevelManager.Instance.FinishingTilePlayer1;
+                maze = LevelManager.Instance.Maze1Container.GetComponentInChildren<Maze>();
+                switchTile = maze.getHardToReachTile();
                 break;
             case PlayerType.Player2:
                 tileToGet = LevelManager.Instance.FinishingTilePlayer2;
+                maze = LevelManager.Instance.Maze2Container.GetComponentInChildren<Maze>();
+                switchTile = maze.getHardToReachTile();
                 break;
         }
-        var position = tileToGet.transform.position;
-        Instantiate(blockPrefab, position, tileToGet.transform.rotation);
+        var barricade = Instantiate(blockPrefab, tileToGet.transform.position + Vector3.right * 0.85f, Quaternion.identity, tileToGet.transform);
+        var switchObject = Instantiate(switchPrefab, switchTile.transform.position, Quaternion.identity, switchTile.transform);
+        maze.SetBarricade(barricade, switchObject);
     }
 }

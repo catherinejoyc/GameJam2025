@@ -256,7 +256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effect: 12
-  frequency: 1
+  frequency: 10
   height: 0.05
 --- !u!1001 &2879232863408192481
 PrefabInstance:
