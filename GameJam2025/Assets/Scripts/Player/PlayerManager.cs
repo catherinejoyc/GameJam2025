@@ -23,21 +23,30 @@ public class PlayerManager : MonoBehaviour
     public GameObject switchPrefab;
     private bool penalize = false;
 
-    public void TakeDamage(float damage)
+    public float TakeDamage(float damage)
     {
         var calculatedDamage = damage - playerStats.shield > 0 ? damage - playerStats.shield : 0;
         var newHealth = playerStats.health - calculatedDamage;
         playerUI.UpdateHealth(newHealth);
         playerUI.TriggerHurtAnimation();
         playerStats.health = newHealth < 0 ? 0 : newHealth;
-        if (newHealth <= 0)
-        {
-            GameManager.Instance.EndGame(player);
-        }
+        return playerStats.health;
+    }
+
+
+    public void DieAnimationSound()
+    {
+        SFXManager.Instance.PlayDieSound();
+    }
+
+    public void Die()
+    {
+        GameManager.Instance.EndGame(player);
     }
 
     public float DealDamage()
     {
+        SFXManager.Instance.PlayHurtSound();
         playerUI.AttackAnimation();
         return playerStats.damage;
     }

@@ -55,8 +55,15 @@ public class GameManager : MonoBehaviour
         FreezePlayers(true);
         var damage = player1.DealDamage();
         yield return new WaitForSeconds(0.3f);
-        player2.TakeDamage(damage);
+        var health = player2.TakeDamage(damage);
         Debug.Log($"Player 1 dealt {damage} damage");
+        if (health == 0)
+        {
+            yield return new WaitForSeconds(1f);
+            player2.DieAnimationSound();
+            yield return new WaitForSeconds(1f);
+            player2.Die();
+        }
         yield return new WaitForSeconds(1f);
         StartCoroutine(LevelManager.Instance.StartRound());
     }
@@ -66,8 +73,15 @@ public class GameManager : MonoBehaviour
         FreezePlayers(true);
         var damage = player2.DealDamage();
         yield return new WaitForSeconds(0.3f);
-        player1.TakeDamage(damage);
+        var health = player1.TakeDamage(damage);
         Debug.Log($"Player 2 dealt {damage} damage");
+        if (health == 0)
+        {
+            yield return new WaitForSeconds(1f);
+            player1.DieAnimationSound();
+            yield return new WaitForSeconds(1f);
+            player1.Die();
+        }
         yield return new WaitForSeconds(1f);
         StartCoroutine(LevelManager.Instance.StartRound());
     }

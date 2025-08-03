@@ -143,6 +143,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sfxSource: {fileID: 4163747223740845809}
+  playerHurtSfx: {fileID: 8300000, guid: 4b712286b4011dc4fa605972e70071cd, type: 3}
+  playerDieSfx: {fileID: 8300000, guid: 056d58421233c3f4d81a5065fd8f31bf, type: 3}
   blockerSfx: {fileID: 8300000, guid: 491de74c09101fd4b8c50b3ef1ab18fe, type: 3}
   confusionSfx: {fileID: 8300000, guid: 9b2bf35f3b7fa0f44b096a68d16376f0, type: 3}
   decreaseViewTimeSfx: {fileID: 8300000, guid: 97b3f56c897c21f41b5ee18617641bcb, type: 3}

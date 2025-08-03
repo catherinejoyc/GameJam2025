@@ -19,6 +19,9 @@ public class SFXManager : MonoBehaviour
     }
 
     public AudioSource sfxSource;
+    [Header("Player")]
+    public AudioClip playerHurtSfx;
+    public AudioClip playerDieSfx;
     [Header("Collectibles")]
     public AudioClip blockerSfx;
     public AudioClip confusionSfx;
@@ -33,6 +36,18 @@ public class SFXManager : MonoBehaviour
     public AudioClip decreaseSpeedSfx;
     public AudioClip increaseZoomOutSfx;
     public AudioClip decreaseZoomOutSfx;
+
+    public void PlayHurtSound()
+    {
+        sfxSource.clip = playerHurtSfx;
+        if (sfxSource.clip != null) sfxSource.Play();
+    }
+
+    public void PlayDieSound()
+    {
+        sfxSource.clip = playerDieSfx;
+        if (sfxSource.clip != null) sfxSource.Play();
+    }
 
     public void PlaySfx(Effects collectibleEffect)
     {
