@@ -40,6 +40,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
+        RefillViewGauge(1);
         switch (player)
         {
             case Player.Player1:
@@ -69,11 +70,11 @@ public class PlayerManager : MonoBehaviour
     {
         playerUI.UpdateHealth(playerStats.health);
         playerUI.UpdateViewGauge(playerStats.viewGauge);
+        effectDisplayUI.RefreshUI(currentEffects);
     }
 
     public void AddEffectToList(Effects effect)
     {
-        Debug.Log("ADDING EFFECT: " + effect);
         this.currentEffects.Add(effect);
         effectDisplayUI.RefreshUI(currentEffects);
     }
@@ -84,6 +85,7 @@ public class PlayerManager : MonoBehaviour
         RemoveConfused();
         playerStats.ResetStats();
 
+        currentEffects.Clear();
         UpdateUI();
 
         var left = mazePlayerObject.GetComponent<LeftPlayerController>();
@@ -149,10 +151,11 @@ public class PlayerManager : MonoBehaviour
 
     public void Heal(int amount)
     {
-        if(playerStats.health < 50)
+        if(playerStats.health + amount < 50)
         {
             playerStats.health += amount;
         }
+        UpdateUI();
     }
 
     public void PlusAttack(int addition)
@@ -196,7 +199,7 @@ public class PlayerManager : MonoBehaviour
             playerCamera.transform.Translate(Vector3.back * Time.deltaTime * moveDistance);
         }
 
-        var newValue = playerStats.viewGauge - Time.deltaTime * 10;
+        var newValue = playerStats.viewGauge - Time.deltaTime * 20;
         playerStats.viewGauge = newValue < 0 ? 0 : newValue;
         playerUI.UpdateViewGauge(newValue);
     }
@@ -296,5 +299,12 @@ public class PlayerManager : MonoBehaviour
         var barricade = Instantiate(blockPrefab, tileToGet.transform.position + Vector3.right * 0.85f, Quaternion.identity, tileToGet.transform);
         var switchObject = Instantiate(switchPrefab, switchTile.transform.position, Quaternion.identity, switchTile.transform);
         maze.SetBarricade(barricade, switchObject);
+    }
+
+    public void RefillViewGauge(int amount)
+    {
+        playerStats.viewGauge += amount * Time.deltaTime;
+        playerStats.viewGauge = Mathf.Min(100, playerStats.viewGauge);
+        UpdateUI();
     }
 }
