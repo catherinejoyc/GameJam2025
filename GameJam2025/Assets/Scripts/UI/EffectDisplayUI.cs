@@ -17,8 +17,12 @@ public class EffectDisplayUI : MonoBehaviour
         Instance = this;
     }
 
+    private List<Effects> oldEffects = new List<Effects>();
+
     public void RefreshUI(List<Effects> effects)
     {
+        if (effects.Equals(oldEffects)) return;
+        oldEffects = effects;
         foreach (Transform child in effectContainer.transform)
         {
             Destroy(child.gameObject);
@@ -27,6 +31,8 @@ public class EffectDisplayUI : MonoBehaviour
         foreach (var effect in effects)
         {
             GameObject go = Instantiate(effectItemPrefab, effectContainer.transform);
+            go.transform.localScale = new Vector3(1, 2f, 1);
+            go.transform.position += Vector3.down;
             go.transform.Find("Icon").GetComponent<Image>().sprite = GetCorrectSprite(effect);
         }
     }
