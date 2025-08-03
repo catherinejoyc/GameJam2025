@@ -1907,6 +1907,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Collectibles
       objectReference: {fileID: 0}
+    - target: {fileID: 3163311644164459144, guid: 8d1e4f2c57fd34442b0711692194cbaf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4912485343895826074, guid: 8d1e4f2c57fd34442b0711692194cbaf, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -2434,6 +2438,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player1: {fileID: 13044862}
   player2: {fileID: 226769446}
+  winner: 0
 --- !u!1001 &2000491675
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3127,6 +3132,10 @@ PrefabInstance:
     - target: {fileID: 3163311644164459144, guid: 8d1e4f2c57fd34442b0711692194cbaf, type: 3}
       propertyPath: m_Name
       value: Collectibles
+      objectReference: {fileID: 0}
+    - target: {fileID: 3163311644164459144, guid: 8d1e4f2c57fd34442b0711692194cbaf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4912485343895826074, guid: 8d1e4f2c57fd34442b0711692194cbaf, type: 3}
       propertyPath: m_Sprite
