@@ -104,6 +104,7 @@ public class LeftPlayerController : MonoBehaviour
                 otherPlayerManager.AddEffectToList(collectibleEffect);
                 break;
         }
+        if (SFXManager.Instance != null) SFXManager.Instance.PlaySfx(collectibleEffect);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
