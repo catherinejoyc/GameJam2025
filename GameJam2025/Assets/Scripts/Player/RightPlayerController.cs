@@ -59,11 +59,9 @@ public class RightPlayerController : MonoBehaviour
                 break;
             case Effects.ShieldBuff:
                 thisPlayerManager.IncreaseShield(5);
-                thisPlayerManager.AddEffectToList(collectibleEffect);
                 break;
             case Effects.SpeedBuff:
                 thisPlayerManager.IncreaseSpeed(1);
-                thisPlayerManager.AddEffectToList(collectibleEffect);
                 break;
             case Effects.SpeedDebuff:
                 otherPlayerManager.DecreaseSpeed(1);
@@ -71,15 +69,12 @@ public class RightPlayerController : MonoBehaviour
                 break;
             case Effects.PlusAttack:
                 thisPlayerManager.PlusAttack(3);
-                thisPlayerManager.AddEffectToList(collectibleEffect);
                 break;
             case Effects.MultiplyAttack:
                 thisPlayerManager.MultiplyAttack(2);
-                thisPlayerManager.AddEffectToList(collectibleEffect);
                 break;
             case Effects.ZoomBuff:
                 thisPlayerManager.ZoomOutBuff();
-                thisPlayerManager.AddEffectToList(collectibleEffect);
                 break;
             case Effects.ZoomDebuff:
                 otherPlayerManager.ZoomInDebuff();
@@ -87,7 +82,6 @@ public class RightPlayerController : MonoBehaviour
                 break;
             case Effects.ViewBuff:
                 thisPlayerManager.IncreaseView();
-                thisPlayerManager.AddEffectToList(collectibleEffect);
                 break;
             case Effects.ViewDebuff:
                 otherPlayerManager.DecreaseView(50);
@@ -99,7 +93,6 @@ public class RightPlayerController : MonoBehaviour
                 break;
             case Effects.Heal:
                 thisPlayerManager.Heal(10);
-                //thisPlayerManager.AddEffectToList(collectibleEffect);
                 break;
             case Effects.ConfusionDebuff:
                 otherPlayerManager.MakeConfused();

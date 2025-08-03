@@ -5,7 +5,7 @@ public class PlayerStats : ScriptableObject
 {
     public float health = 50;
     public float damage = 1;
-    public float speed = 1;
+    public float speed = 0;
     public float viewGauge = 100;
     public float shield = 0;
     public float zoom = 7;
@@ -14,7 +14,7 @@ public class PlayerStats : ScriptableObject
     public void ResetStats()
     {
         damage = 1;
-        speed = 1;
+        speed = 0;
         shield = 0;
         viewGauge = 100;
         zoom = 7;
