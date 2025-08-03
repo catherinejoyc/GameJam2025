@@ -72,7 +72,7 @@ public class LevelManager : MonoBehaviour
                 }
                 catch (Exception e)
                 {
-                    Debug.LogError("Something went wrong while generating maze " + i + ": " + e.Message);
+                    Debug.LogWarning("Something went wrong while generating maze " + i + ": " + e.Message);
                     if (j == 4)
                     {
                         Debug.LogError("Failed to generate maze after 5 attempts. Terminating.");
