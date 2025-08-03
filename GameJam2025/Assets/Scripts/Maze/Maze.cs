@@ -510,6 +510,75 @@ public class Maze : MonoBehaviour
         }
 
     }
+    public void AddVisualBorder()
+    {
+        for (int i = 0; i < this.size; i++)
+        {
+            for (int j = 0; j < this.size; j++)
+            {
+                if (!this.tiles[j, i].walkable[Direction.Up] && this.tiles[j, i].border[Direction.Up])
+                {
+                    GameObject tileObject = Instantiate(tilePrefab, Vector3.up + tiles[j, i].transform.position, Quaternion.identity, this.transform);
+                    Tile tile = tileObject.GetComponent<Tile>();
+                    tile.SetAttributes(j, i + 1, new Dictionary<Direction, bool>
+                    {
+                        { Direction.Down, true },
+                        { Direction.Up, false },
+                        { Direction.Left, false },
+                        { Direction.Right, false }
+                    }, GetTile);
+                    tile.MakeWalkable(Direction.Left);
+                    tile.MakeWalkable(Direction.Right);
+                    tile.MakeWalkable(Direction.Up);
+                }
+                if (!this.tiles[j, i].walkable[Direction.Left] && this.tiles[j, i].border[Direction.Left])
+                {
+                    GameObject tileObject = Instantiate(tilePrefab, Vector3.left + tiles[j, i].transform.position, Quaternion.identity, this.transform);
+                    Tile tile = tileObject.GetComponent<Tile>();
+                    tile.SetAttributes(j - 1, i, new Dictionary<Direction, bool>
+                    {
+                        { Direction.Down, false },
+                        { Direction.Up, false },
+                        { Direction.Left, false },
+                        { Direction.Right, true }
+                    }, GetTile);
+                    tile.MakeWalkable(Direction.Down);
+                    tile.MakeWalkable(Direction.Left);
+                    tile.MakeWalkable(Direction.Up);
+                }
+                if (!this.tiles[j, i].walkable[Direction.Right] && this.tiles[j, i].border[Direction.Right])
+                {
+                    GameObject tileObject = Instantiate(tilePrefab, Vector3.right + tiles[j, i].transform.position, Quaternion.identity, this.transform);
+                    Tile tile = tileObject.GetComponent<Tile>();
+                    tile.SetAttributes(j + 1, i, new Dictionary<Direction, bool>
+                    {
+                        { Direction.Down, false },
+                        { Direction.Up, false },
+                        { Direction.Left, true },
+                        { Direction.Right, false }
+                    }, GetTile);
+                    tile.MakeWalkable(Direction.Down);
+                    tile.MakeWalkable(Direction.Right);
+                    tile.MakeWalkable(Direction.Up);
+                }
+                if (!this.tiles[j, i].walkable[Direction.Down] && this.tiles[j, i].border[Direction.Down])
+                {
+                    GameObject tileObject = Instantiate(tilePrefab, Vector3.down + tiles[j, i].transform.position, Quaternion.identity, this.transform);
+                    Tile tile = tileObject.GetComponent<Tile>();
+                    tile.SetAttributes(j , i - 1, new Dictionary<Direction, bool>
+                    {
+                        { Direction.Down, false },
+                        { Direction.Up, true },
+                        { Direction.Left, false },
+                        { Direction.Right, false }
+                    }, GetTile);
+                    tile.MakeWalkable(Direction.Down);
+                    tile.MakeWalkable(Direction.Left);
+                    tile.MakeWalkable(Direction.Right);
+                }
+            }
+        }
+    }
 
 
     public void SpawnCollectibles(List<GameObject> collectibles)

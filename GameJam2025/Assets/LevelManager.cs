@@ -156,8 +156,11 @@ public class LevelManager : MonoBehaviour
         maze1.SpawnCollectibles(collectibles);
         maze2.SpawnCollectibles(collectibles);
 
+        maze1.AddVisualBorder();
+        maze2.AddVisualBorder();
 
         GameManager.Instance.FreezePlayers(false);
+
 
     }
 
