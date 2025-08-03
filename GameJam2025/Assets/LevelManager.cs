@@ -63,7 +63,24 @@ public class LevelManager : MonoBehaviour
         Dictionary<Maze, int> mazeLengths = new Dictionary<Maze, int>();
         for (int i = 0; i < _numberOfMazes; i++)
         {
-            mazes.Add(MazeGenerator.Instance.GenerateMaze(gameObject));
+            for (int j = 0; j < 5; j++)
+            {
+                try
+                {
+                    mazes.Add(MazeGenerator.Instance.GenerateMaze(gameObject));
+                    break;
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError("Something went wrong while generating maze " + i + ": " + e.Message);
+                    if (j == 4)
+                    {
+                        Debug.LogError("Failed to generate maze after 5 attempts. Terminating.");
+                        throw e;
+                    }
+                }
+            }
+
             yield return null;
             mazeLengths.Add(mazes[i], mazes[i].GetBestSolutionLength());
         }

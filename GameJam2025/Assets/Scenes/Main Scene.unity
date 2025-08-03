@@ -156,6 +156,7 @@ MonoBehaviour:
   mazePlayerObject: {fileID: 1950589436}
   blockPrefab: {fileID: 4977972108217605724, guid: b7ea43a0a6ceae64fa3635e904713088, type: 3}
   currentEffects: 
+  switchPrefab: {fileID: 4232179984861116481, guid: 180379bf74eeafd4b87c0025d6d7a532, type: 3}
 --- !u!4 &13044863
 Transform:
   m_ObjectHideFlags: 0
@@ -375,6 +376,7 @@ MonoBehaviour:
   mazePlayerObject: {fileID: 701089168}
   blockPrefab: {fileID: 4977972108217605724, guid: b7ea43a0a6ceae64fa3635e904713088, type: 3}
   currentEffects: 
+  switchPrefab: {fileID: 4232179984861116481, guid: 180379bf74eeafd4b87c0025d6d7a532, type: 3}
 --- !u!4 &226769447
 Transform:
   m_ObjectHideFlags: 0
@@ -1146,6 +1148,7 @@ MonoBehaviour:
   - {fileID: 53488680433868268, guid: 0d6637952a3b089499d006fe679e054a, type: 3}
   - {fileID: 6192822059715926972, guid: 3c931a73cf759ba40ac67bba5aafb75a, type: 3}
   - {fileID: 5007855824203091769, guid: c6c9ad81ddcd32f46800a196bbdab56d, type: 3}
+  - {fileID: 7870341730780685936, guid: 57facc2bc7cbdbf4c982f1c12616c83a, type: 3}
 --- !u!4 &687733271
 Transform:
   m_ObjectHideFlags: 0

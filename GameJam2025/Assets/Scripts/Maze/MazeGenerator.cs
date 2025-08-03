@@ -26,9 +26,9 @@ public class MazeGenerator : MonoBehaviour
     }
 
 
-    public int defaultSize = 30; // Size of the maze
-    public int defaultRandSteps = 40; // Number of random steps to take
-    public double defaultPerturbationChance = 0.5; // Chance of perturbation in the maze generation
+    private int defaultSize = 20; // Size of the maze
+    private int defaultRandSteps = 25; // Number of random steps to take
+    private double defaultPerturbationChance = 0.5; // Chance of perturbation in the maze generation
 
     public GameObject mazePrefab;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
