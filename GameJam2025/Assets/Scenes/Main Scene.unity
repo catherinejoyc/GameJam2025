@@ -1135,6 +1135,10 @@ MonoBehaviour:
   MazePlayer1: {fileID: 1950589436}
   MazePlayer2: {fileID: 701089168}
   FinishTriggerPrefab: {fileID: 1215419093590882465, guid: efac191b18f861b4eafb466301ce4ab0, type: 3}
+  currentMazeSize: 5
+  currentMazeRandStep: 5
+  mazeModifier: 2
+  currentItemAmount: 5
   CollectiblePrefabs:
   - {fileID: 1051104842539264834, guid: 3bb519321814bba459f4790fae6f283b, type: 3}
   - {fileID: 7775599641948150619, guid: 5fb33e8938e2165459b167e14d0ad4d8, type: 3}

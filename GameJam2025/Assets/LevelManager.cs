@@ -34,9 +34,10 @@ public class LevelManager : MonoBehaviour
 
     public GameObject FinishTriggerPrefab;
 
-    public int currentMazeSize = 0;
-    public int currentMazeRandStep = 0;
-    public int mazeModifier = 5;
+    public int currentMazeSize = 5;
+    public int currentMazeRandStep = 5;
+    public int mazeModifier = 2;
+    public int currentItemAmount = 5;
 
     public List<GameObject> CollectiblePrefabs;
 
@@ -65,6 +66,7 @@ public class LevelManager : MonoBehaviour
         CleanUp();
         currentMazeSize += mazeModifier;
         currentMazeRandStep += mazeModifier;
+        currentItemAmount += mazeModifier;
         MazeGenerator.Instance.defaultSize = currentMazeSize;
         MazeGenerator.Instance.defaultRandSteps = currentMazeRandStep;
 
@@ -165,7 +167,7 @@ public class LevelManager : MonoBehaviour
         trigger1.GetComponent<FinishReachedScript>().SetDelegate(delegate1);
         trigger2.GetComponent<FinishReachedScript>().SetDelegate(delegate2);
 
-        List<GameObject> collectibles = DetermineCollectiblesInMaze(10);
+        List<GameObject> collectibles = DetermineCollectiblesInMaze(currentItemAmount);
 
         maze1.SpawnCollectibles(collectibles);
         maze2.SpawnCollectibles(collectibles);
