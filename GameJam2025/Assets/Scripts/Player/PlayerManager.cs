@@ -28,6 +28,7 @@ public class PlayerManager : MonoBehaviour
         var calculatedDamage = damage - playerStats.shield > 0 ? damage - playerStats.shield : 0;
         var newHealth = playerStats.health - calculatedDamage;
         playerUI.UpdateHealth(newHealth);
+        playerUI.TriggerHurtAnimation();
         playerStats.health = newHealth < 0 ? 0 : newHealth;
         if (newHealth <= 0)
         {
