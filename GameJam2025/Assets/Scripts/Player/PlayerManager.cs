@@ -135,10 +135,7 @@ public class PlayerManager : MonoBehaviour
 
     public void DecreaseSpeed(int amount)
     {
-        if(playerStats.speed > 0)
-        {
-            playerStats.speed -= amount;
-        }
+        playerStats.speed -= amount;
 
         var left = mazePlayerObject.GetComponent<LeftPlayerController>();
         if (left != null)

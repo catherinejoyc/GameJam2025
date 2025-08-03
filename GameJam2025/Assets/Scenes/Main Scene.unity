@@ -1892,6 +1892,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 4402868533642293175}
     m_Modifications:
     - target: {fileID: 528521612214968445, guid: 8d1e4f2c57fd34442b0711692194cbaf, type: 3}
+      propertyPath: m_Spacing
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 528521612214968445, guid: 8d1e4f2c57fd34442b0711692194cbaf, type: 3}
       propertyPath: m_Padding.m_Top
       value: 10
       objectReference: {fileID: 0}
@@ -3051,6 +3055,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1225607141}
     m_Modifications:
+    - target: {fileID: 528521612214968445, guid: 8d1e4f2c57fd34442b0711692194cbaf, type: 3}
+      propertyPath: m_Spacing
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 528521612214968445, guid: 8d1e4f2c57fd34442b0711692194cbaf, type: 3}
       propertyPath: m_Padding.m_Top
       value: 10
