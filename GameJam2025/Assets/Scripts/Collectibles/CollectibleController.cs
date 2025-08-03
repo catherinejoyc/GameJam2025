@@ -13,6 +13,8 @@ public class CollectibleController : MonoBehaviour
 
     private float originalY;
 
+    public bool isDespawning { get; set; } = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -29,6 +31,7 @@ public class CollectibleController : MonoBehaviour
 
     public void TriggerDespawn()
     {
+        this.isDespawning = true;
         var animation = transform.GetChild(2);
         animation.gameObject.SetActive(true);
         StartCoroutine(DestroyAfterSeconds(0.3f));

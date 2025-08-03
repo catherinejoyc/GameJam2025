@@ -111,9 +111,10 @@ public class RightPlayerController : MonoBehaviour
         if (collidedObject.CompareTag("Collectible"))
         {
             var controller = collidedObject.GetComponent<CollectibleController>();
+            if (controller.isDespawning) return;
             var collectibleEffect = controller.effect;
-            TriggerCollectedEffect(collectibleEffect);
             controller.TriggerDespawn();
+            TriggerCollectedEffect(collectibleEffect);
         }
     }
 }
