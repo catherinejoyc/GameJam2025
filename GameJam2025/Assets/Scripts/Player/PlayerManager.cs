@@ -23,7 +23,8 @@ public class PlayerManager : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        var newHealth = playerStats.health + playerStats.shield - damage;
+        var calculatedDamage = damage - playerStats.shield > 0 ? damage - playerStats.shield : 0;
+        var newHealth = playerStats.health - calculatedDamage;
         playerUI.UpdateHealth(newHealth);
         playerStats.health = newHealth < 0 ? 0 : newHealth;
         if (newHealth <= 0)
