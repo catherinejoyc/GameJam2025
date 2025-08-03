@@ -1,4 +1,6 @@
+using Assets.Scripts.Collectibles;
 using Assets.Scripts.Player;
+using System.Collections.Generic;
 using UnityEngine;
 
 public enum Player {
@@ -11,11 +13,11 @@ public class PlayerManager : MonoBehaviour
     public Player player;
     public PlayerStats playerStats;
     public PlayerUI playerUI;
+    public EffectDisplayUI effectDisplayUI;
     public Camera playerCamera;
     public GameObject mazePlayerObject;
     public GameObject blockPrefab;
-
-    public GameObject switchPrefab;
+    public List<Effects> currentEffects = new List<Effects>();
 
     public void TakeDamage(float damage)
     {
@@ -65,6 +67,13 @@ public class PlayerManager : MonoBehaviour
     {
         playerUI.UpdateHealth(playerStats.health);
         playerUI.UpdateViewGauge(playerStats.viewGauge);
+    }
+
+    public void AddEffectToList(Effects effect)
+    {
+        Debug.Log("ADDING EFFECT: " + effect);
+        this.currentEffects.Add(effect);
+        effectDisplayUI.RefreshUI(currentEffects);
     }
 
     public void ResetStats()
@@ -192,9 +201,9 @@ public class PlayerManager : MonoBehaviour
 
     private void ResetViewGauge()
     {
-        if (playerCamera.transform.localPosition.z < -playerStats.zoom)
+        if (playerCamera.transform.localPosition.z < -7)
         {
-            var moveDistance = playerStats.zoom + playerCamera.transform.localPosition.z;
+            var moveDistance = 7 + playerCamera.transform.localPosition.z;
             playerCamera.transform.Translate(Vector3.back * Time.deltaTime * moveDistance);
         }
     }
@@ -240,49 +249,37 @@ public class PlayerManager : MonoBehaviour
 
     public void IncreaseView()
     {
-        playerStats.viewGauge += 30;
-        playerStats.viewGauge = Mathf.Min(100, playerStats.viewGauge);
-        UpdateUI();
+        playerStats.viewGauge = 100;
     }
 
-    public void DecreaseView()
+    public void DecreaseView(int amount)
     {
-        playerStats.viewGauge -= 30;
-        playerStats.viewGauge = Mathf.Max(0, playerStats.viewGauge);
-        UpdateUI();
+        playerStats.viewGauge = playerStats.viewGauge - amount < 0 ? 0 : playerStats.viewGauge - amount;
     }
 
     public void ZoomOutBuff()
     {
-        playerStats.zoom += 2;
+        //Only until round ends
     }
 
     public void ZoomInDebuff()
     {
-        playerStats.zoom -= 2;
-        playerStats.zoom = Mathf.Max(1, playerStats.zoom); // Ensure zoom does not go below 1
+
     }
 
     public void BlockExit(PlayerType forPlayer)
     {
         var tileToGet = new Tile();
-        var switchTile = new Tile();
-        Maze maze = null;
         switch (forPlayer)
         {
             case PlayerType.Player1:
                 tileToGet = LevelManager.Instance.FinishingTilePlayer1;
-                maze = LevelManager.Instance.Maze1Container.GetComponentInChildren<Maze>();
-                switchTile = maze.getHardToReachTile();
                 break;
             case PlayerType.Player2:
                 tileToGet = LevelManager.Instance.FinishingTilePlayer2;
-                maze = LevelManager.Instance.Maze2Container.GetComponentInChildren<Maze>();
-                switchTile = maze.getHardToReachTile();
                 break;
         }
-        var barricade = Instantiate(blockPrefab, tileToGet.transform.position + Vector3.right * 0.85f, Quaternion.identity, tileToGet.transform);
-        var switchObject = Instantiate(switchPrefab, switchTile.transform.position, Quaternion.identity, switchTile.transform);
-        maze.SetBarricade(barricade, switchObject);
+        var position = tileToGet.transform.position;
+        Instantiate(blockPrefab, position, tileToGet.transform.rotation);
     }
 }

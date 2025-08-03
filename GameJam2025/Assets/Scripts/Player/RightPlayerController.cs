@@ -6,9 +6,6 @@ public class RightPlayerController : MonoBehaviour
 {
     public bool isConfused = false;
 
-    [SerializeField]
-    private GameObject otherPlayer;
-
     public float moveSpeed = 3f;
 
     private Vector2 moveDirection;
@@ -20,8 +17,8 @@ public class RightPlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        otherPlayerManager = otherPlayer.GetComponent<PlayerManager>();
-        thisPlayerManager = transform.parent.gameObject.GetComponent<PlayerManager>();
+        otherPlayerManager = GameManager.Instance.player1;
+        thisPlayerManager = GameManager.Instance.player2;
     }
 
     public void Freeze(bool freeze)
@@ -54,6 +51,7 @@ public class RightPlayerController : MonoBehaviour
 
     private void TriggerCollectedEffect(Effects collectibleEffect)
     {
+        Debug.Log("COLLIDED WITH EFFECT: " + collectibleEffect);
         switch (collectibleEffect)
         {
             case Effects.None:
@@ -61,42 +59,55 @@ public class RightPlayerController : MonoBehaviour
                 break;
             case Effects.ShieldBuff:
                 thisPlayerManager.IncreaseShield(1);
+                thisPlayerManager.AddEffectToList(collectibleEffect);
                 break;
             case Effects.SpeedBuff:
                 thisPlayerManager.IncreaseSpeed(1);
+                thisPlayerManager.AddEffectToList(collectibleEffect);
                 break;
             case Effects.SpeedDebuff:
                 otherPlayerManager.DecreaseSpeed(1);
+                otherPlayerManager.AddEffectToList(collectibleEffect);
                 break;
             case Effects.PlusAttack:
                 thisPlayerManager.PlusAttack(3);
+                thisPlayerManager.AddEffectToList(collectibleEffect);
                 break;
             case Effects.MultiplyAttack:
                 thisPlayerManager.MultiplyAttack(2);
+                thisPlayerManager.AddEffectToList(collectibleEffect);
                 break;
             case Effects.ZoomBuff:
                 thisPlayerManager.ZoomOutBuff();
+                thisPlayerManager.AddEffectToList(collectibleEffect);
                 break;
             case Effects.ZoomDebuff:
                 otherPlayerManager.ZoomInDebuff();
+                otherPlayerManager.AddEffectToList(collectibleEffect);
                 break;
             case Effects.ViewBuff:
                 thisPlayerManager.IncreaseView();
+                thisPlayerManager.AddEffectToList(collectibleEffect);
                 break;
             case Effects.ViewDebuff:
-                otherPlayerManager.DecreaseView();
+                otherPlayerManager.DecreaseView(50);
+                otherPlayerManager.AddEffectToList(collectibleEffect);
                 break;
             case Effects.ResetStartDebuff:
-                otherPlayerManager.ResetToStart(PlayerType.Player1);
+                otherPlayerManager.ResetToStart(PlayerType.Player2);
+                otherPlayerManager.AddEffectToList(collectibleEffect);
                 break;
             case Effects.Heal:
                 thisPlayerManager.Heal(10);
+                //thisPlayerManager.AddEffectToList(collectibleEffect);
                 break;
             case Effects.ConfusionDebuff:
                 otherPlayerManager.MakeConfused();
+                otherPlayerManager.AddEffectToList(collectibleEffect);
                 break;
             case Effects.BlockExitDebuff:
-                otherPlayerManager.BlockExit(PlayerType.Player1);
+                otherPlayerManager.BlockExit(PlayerType.Player2);
+                otherPlayerManager.AddEffectToList(collectibleEffect);
                 break;
         }
     }

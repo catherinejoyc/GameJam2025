@@ -255,8 +255,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcd39fce1000c26498b1381c7fac65bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effect: 9
-  frequency: 10
+  effect: 8
+  frequency: 1
   height: 0.05
 --- !u!1001 &1933894322274451051
 PrefabInstance:

@@ -171,8 +171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcd39fce1000c26498b1381c7fac65bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effect: 7
-  frequency: 10
+  effect: 6
+  frequency: 2
   height: 0.05
 --- !u!1 &6579087464980695087
 GameObject:
