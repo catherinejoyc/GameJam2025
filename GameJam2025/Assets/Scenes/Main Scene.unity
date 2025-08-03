@@ -152,6 +152,7 @@ MonoBehaviour:
   playerStats: {fileID: 11400000, guid: ae3fa54535796f44983dd7a41a530f16, type: 2}
   playerUI: {fileID: 4402868533642293174}
   effectDisplayUI: {fileID: 813360379}
+  statsUI: {fileID: 821436335}
   playerCamera: {fileID: 546725848}
   mazePlayerObject: {fileID: 1950589436}
   blockPrefab: {fileID: 4977972108217605724, guid: b7ea43a0a6ceae64fa3635e904713088, type: 3}
@@ -269,6 +270,7 @@ GameObject:
   - component: {fileID: 69310389}
   - component: {fileID: 69310391}
   - component: {fileID: 69310390}
+  - component: {fileID: 69310392}
   m_Layer: 5
   m_Name: Stats Screen Right
   m_TagString: Untagged
@@ -337,6 +339,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 69310388}
   m_CullTransparentMesh: 1
+--- !u!114 &69310392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69310388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d143fb5a118b534d8fc069cb998de84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackText: {fileID: 1474942493}
+  speedText: {fileID: 607194041}
+  shieldText: {fileID: 362973855}
+  zoomText: {fileID: 281011457}
 --- !u!1 &74251488
 GameObject:
   m_ObjectHideFlags: 0
@@ -666,6 +684,7 @@ MonoBehaviour:
   playerStats: {fileID: 11400000, guid: 3f69e08c1e074494eb5ae6fba1121ff7, type: 2}
   playerUI: {fileID: 483340918}
   effectDisplayUI: {fileID: 902560710}
+  statsUI: {fileID: 69310392}
   playerCamera: {fileID: 1310242619}
   mazePlayerObject: {fileID: 701089168}
   blockPrefab: {fileID: 4977972108217605724, guid: b7ea43a0a6ceae64fa3635e904713088, type: 3}
@@ -2150,6 +2169,7 @@ GameObject:
   - component: {fileID: 821436332}
   - component: {fileID: 821436334}
   - component: {fileID: 821436333}
+  - component: {fileID: 821436335}
   m_Layer: 5
   m_Name: Stats Screen Left
   m_TagString: Untagged
@@ -2218,6 +2238,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 821436331}
   m_CullTransparentMesh: 1
+--- !u!114 &821436335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821436331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d143fb5a118b534d8fc069cb998de84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackText: {fileID: 1777515772}
+  speedText: {fileID: 1499868447}
+  shieldText: {fileID: 74251490}
+  zoomText: {fileID: 1058082679}
 --- !u!224 &902560709 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8870786257021009700, guid: 8d1e4f2c57fd34442b0711692194cbaf, type: 3}
