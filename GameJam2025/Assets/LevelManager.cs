@@ -34,6 +34,10 @@ public class LevelManager : MonoBehaviour
 
     public GameObject FinishTriggerPrefab;
 
+    public int currentMazeSize = 0;
+    public int currentMazeRandStep = 0;
+    public int mazeModifier = 5;
+
     public List<GameObject> CollectiblePrefabs;
 
     public delegate void FinishReachedDelegate();
@@ -59,6 +63,11 @@ public class LevelManager : MonoBehaviour
     public IEnumerator StartRound()
     {
         CleanUp();
+        currentMazeSize += mazeModifier;
+        currentMazeRandStep += mazeModifier;
+        MazeGenerator.Instance.defaultSize = currentMazeSize;
+        MazeGenerator.Instance.defaultRandSteps = currentMazeRandStep;
+
         List<Maze> mazes = new List<Maze>();
         Dictionary<Maze, int> mazeLengths = new Dictionary<Maze, int>();
         for (int i = 0; i < _numberOfMazes; i++)
