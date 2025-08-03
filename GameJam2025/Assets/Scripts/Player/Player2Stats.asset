@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 277095f8da8f6984e8564e8bf86e791d, type: 3}
   m_Name: Player2Stats
   m_EditorClassIdentifier: 
-  health: 1
+  health: 49
   damage: 1
   speed: 0
-  viewGauge: 100
-  shield: 5
+  viewGauge: 40.70241
+  shield: 0
   zoom: 7

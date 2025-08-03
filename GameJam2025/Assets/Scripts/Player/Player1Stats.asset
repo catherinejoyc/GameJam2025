@@ -15,6 +15,6 @@ MonoBehaviour:
   health: 0
   damage: 1
   speed: 0
-  viewGauge: 95.42601
+  viewGauge: 100
   shield: 0
-  zoom: 7
+  zoom: 5
