@@ -8,7 +8,6 @@ namespace Assets.Scripts.Collectibles
 {
     public enum Effects
     {
-        None,
         ShieldBuff,
         SpeedBuff,
         SpeedDebuff,
@@ -21,6 +20,7 @@ namespace Assets.Scripts.Collectibles
         ResetStartDebuff,
         Heal,
         ConfusionDebuff,
-        BlockExitDebuff
+        BlockExitDebuff,
+        None
     }
 }

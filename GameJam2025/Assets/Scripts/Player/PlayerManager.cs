@@ -1,4 +1,6 @@
+using Assets.Scripts.Collectibles;
 using Assets.Scripts.Player;
+using System.Collections.Generic;
 using UnityEngine;
 
 public enum Player {
@@ -11,9 +13,11 @@ public class PlayerManager : MonoBehaviour
     public Player player;
     public PlayerStats playerStats;
     public PlayerUI playerUI;
+    public EffectDisplayUI effectDisplayUI;
     public Camera playerCamera;
     public GameObject mazePlayerObject;
     public GameObject blockPrefab;
+    public List<Effects> currentEffects = new List<Effects>();
 
     public void TakeDamage(float damage)
     {
@@ -63,6 +67,13 @@ public class PlayerManager : MonoBehaviour
     {
         playerUI.UpdateHealth(playerStats.health);
         playerUI.UpdateViewGauge(playerStats.viewGauge);
+    }
+
+    public void AddEffectToList(Effects effect)
+    {
+        Debug.Log("ADDING EFFECT: " + effect);
+        this.currentEffects.Add(effect);
+        effectDisplayUI.RefreshUI(currentEffects);
     }
 
     public void ResetStats()
@@ -238,12 +249,12 @@ public class PlayerManager : MonoBehaviour
 
     public void IncreaseView()
     {
-
+        playerStats.viewGauge = 100;
     }
 
-    public void DecreaseView()
+    public void DecreaseView(int amount)
     {
-
+        playerStats.viewGauge = playerStats.viewGauge - amount < 0 ? 0 : playerStats.viewGauge - amount;
     }
 
     public void ZoomOutBuff()

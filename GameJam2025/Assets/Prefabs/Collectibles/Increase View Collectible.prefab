@@ -255,7 +255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcd39fce1000c26498b1381c7fac65bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effect: 8
+  effect: 7
   frequency: 2
   height: 0.05
 --- !u!1001 &4972657105178121116
