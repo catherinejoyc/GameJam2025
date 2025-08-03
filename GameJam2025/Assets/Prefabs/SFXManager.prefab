@@ -143,16 +143,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sfxSource: {fileID: 4163747223740845809}
-  blockerSfx: {fileID: 8300000, guid: 704e2c540e4328043a7e5021d8934b5a, type: 3}
+  blockerSfx: {fileID: 8300000, guid: 491de74c09101fd4b8c50b3ef1ab18fe, type: 3}
   confusionSfx: {fileID: 8300000, guid: 9b2bf35f3b7fa0f44b096a68d16376f0, type: 3}
   decreaseViewTimeSfx: {fileID: 8300000, guid: 97b3f56c897c21f41b5ee18617641bcb, type: 3}
   doubleAttackSfx: {fileID: 8300000, guid: f388ce6c3f5c27b41aa36b80e7a89cbf, type: 3}
   healSoundSfx: {fileID: 8300000, guid: 607cef6082070604ebe6ec90aba015bc, type: 3}
   increaseViewTimeSfx: {fileID: 8300000, guid: ec624e8c65781e54da37f22aa2cf75af, type: 3}
   plusAttackDamageSfx: {fileID: 0}
-  restartSfx: {fileID: 0}
-  shieldSfx: {fileID: 0}
+  restartSfx: {fileID: 8300000, guid: 68051ce4c1f245842abb84b1cd745032, type: 3}
+  shieldSfx: {fileID: 8300000, guid: a0e43c34cd76e56498d26e935ab720cf, type: 3}
   increaseSpeedSfx: {fileID: 8300000, guid: 167a742118a8ba24fb41ed7d6699e866, type: 3}
   decreaseSpeedSfx: {fileID: 8300000, guid: ae44f310b21e71e4c8bd5cae66b33d3b, type: 3}
-  increaseZoomOutSfx: {fileID: 0}
-  decreaseZoomOutSfx: {fileID: 0}
+  increaseZoomOutSfx: {fileID: 8300000, guid: 0513ed9b9bd075f49a0bdc6eb5981db0, type: 3}
+  decreaseZoomOutSfx: {fileID: 8300000, guid: 19d560bf7db6d0c40aff4076ab2f78b3, type: 3}
