@@ -40,6 +40,7 @@ public class LevelManager : MonoBehaviour
 
     private int _numberOfMazes = 4;
 
+
     private void CleanUp()
     {
         foreach (Transform child in Maze1Container.transform)

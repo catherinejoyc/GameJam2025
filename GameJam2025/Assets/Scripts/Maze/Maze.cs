@@ -22,9 +22,40 @@ public class Maze : MonoBehaviour
     private const float NEXT_ITEM_DISTANCE_WEIGHT =2f;
     private int size { get; set; }
     private Tile[,] tiles { get; set; }
+    private List<Tile> hardToReachTiles = new List<Tile>();
     private Tile GetTile(int x, int y)
     {
         return this.tiles[x, y];
+    }
+
+    private GameObject barricade;
+    private GameObject switchObject;
+
+    public void SetBarricade(GameObject barricade, GameObject switchObject)
+    {
+        if (this.barricade != null || this.switchObject != null)
+        {
+            Destroy(barricade);
+            Destroy(switchObject);
+            return;
+        }
+        this.barricade = barricade;
+        this.switchObject = switchObject;
+    }
+
+    public void RemoveBarricade()
+    {
+        Destroy(this.barricade);
+        Destroy(this.switchObject);
+        this.barricade = null;
+        this.switchObject = null;
+    }
+
+    public Tile getHardToReachTile()
+    {
+        Tile tile = this.hardToReachTiles[Random.Range(0, this.hardToReachTiles.Count)];
+        this.hardToReachTiles.Remove(tile);
+        return tile;
     }
 
     private Tile ApplyDirection(Tile tile, Direction direction)
@@ -529,6 +560,12 @@ public class Maze : MonoBehaviour
             }, tile => tileStatsMap.ContainsKey(tile) ? tileStatsMap[tile].distanceToNextItem : 0);
             tileStatsMap.Remove(bestTile);
         }
+
+        this.hardToReachTiles = tileStatsMap
+            .OrderBy((k) =>
+                k.Value.distanceToStart + k.Value.distanceToEnd +
+                k.Value.distanceToNextItem * NEXT_ITEM_DISTANCE_WEIGHT).Reverse().Select(x => x.Key).ToList()
+            .GetRange(0, 10);
 
     }
 

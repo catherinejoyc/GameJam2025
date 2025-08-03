@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effect: 6
-  frequency: 2
+  frequency: 10
   height: 0.05
 --- !u!1 &7230921006140274651
 GameObject:
