@@ -84,6 +84,7 @@ public class PlayerManager : MonoBehaviour
     {
         //When round ends
         RemoveConfused();
+        ResetCamera();
         playerStats.ResetStats();
 
         currentEffects.Clear();
@@ -267,10 +268,15 @@ public class PlayerManager : MonoBehaviour
 
     }
 
+    public void ResetCamera()
+    {
+        playerCamera.transform.position = new Vector3(playerCamera.transform.position.x, playerCamera.transform.position.y, Mathf.Min(playerCamera.transform.position.z, -playerStats.zoom));
+    }
+
     public void ZoomOutBuff()
     {
         playerStats.zoom += 2;
-        playerCamera.transform.position = new Vector3(playerCamera.transform.position.x, playerCamera.transform.position.y, Mathf.Min(playerCamera.transform.position.z, -playerStats.zoom));
+        ResetCamera();
     }
 
     public void ZoomInDebuff()
