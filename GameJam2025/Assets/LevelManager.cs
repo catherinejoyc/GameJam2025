@@ -43,7 +43,7 @@ public class LevelManager : MonoBehaviour
 
     public delegate void FinishReachedDelegate();
 
-    private int _numberOfMazes = 4;
+    private int _numberOfMazes = 2;
 
 
     private void CleanUp()
@@ -176,6 +176,9 @@ public class LevelManager : MonoBehaviour
         this.StartingTilePlayer2 = maze2.GetStartTile();
         MazePlayer1.transform.position = this.StartingTilePlayer1.transform.position;
         MazePlayer2.transform.position = this.StartingTilePlayer2.transform.position;
+
+        GameManager.Instance.player1.ResetCamera();
+        GameManager.Instance.player2.ResetCamera();
 
         GameManager.Instance.FreezePlayers(false);
 
