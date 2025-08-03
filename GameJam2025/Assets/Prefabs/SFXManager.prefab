@@ -149,7 +149,7 @@ MonoBehaviour:
   doubleAttackSfx: {fileID: 8300000, guid: f388ce6c3f5c27b41aa36b80e7a89cbf, type: 3}
   healSoundSfx: {fileID: 8300000, guid: 607cef6082070604ebe6ec90aba015bc, type: 3}
   increaseViewTimeSfx: {fileID: 8300000, guid: ec624e8c65781e54da37f22aa2cf75af, type: 3}
-  plusAttackDamageSfx: {fileID: 0}
+  plusAttackDamageSfx: {fileID: 8300000, guid: 110b5f58c921bfa48baf5705c7a56927, type: 3}
   restartSfx: {fileID: 8300000, guid: 68051ce4c1f245842abb84b1cd745032, type: 3}
   shieldSfx: {fileID: 8300000, guid: a0e43c34cd76e56498d26e935ab720cf, type: 3}
   increaseSpeedSfx: {fileID: 8300000, guid: 167a742118a8ba24fb41ed7d6699e866, type: 3}
