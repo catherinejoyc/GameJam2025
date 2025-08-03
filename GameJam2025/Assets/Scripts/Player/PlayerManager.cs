@@ -20,6 +20,7 @@ public class PlayerManager : MonoBehaviour
     public List<Effects> currentEffects = new List<Effects>();
 
     public GameObject switchPrefab;
+    private bool penalize = false;
 
     public void TakeDamage(float damage)
     {
@@ -47,6 +48,7 @@ public class PlayerManager : MonoBehaviour
             case Player.Player1:
                 if (Input.GetKey(KeyCode.LeftShift))
                 {
+                    penalize = true;
                     UseViewGauge();
                 }
                 else
@@ -57,6 +59,7 @@ public class PlayerManager : MonoBehaviour
             case Player.Player2:
                 if (Input.GetKey(KeyCode.RightShift))
                 {
+                    penalize = true;
                     UseViewGauge();
                 }
                 else
@@ -84,6 +87,7 @@ public class PlayerManager : MonoBehaviour
     {
         //When round ends
         RemoveConfused();
+        ResetCamera();
         playerStats.ResetStats();
 
         currentEffects.Clear();
@@ -189,7 +193,7 @@ public class PlayerManager : MonoBehaviour
 
     private void UseViewGauge()
     {
-        if (playerStats.viewGauge == 0)
+        if (playerStats.viewGauge < 15)
         {
             ResetViewGauge();
             return;
@@ -197,10 +201,10 @@ public class PlayerManager : MonoBehaviour
         if (playerCamera.transform.localPosition.z > -60)
         {
             var moveDistance = 100 + playerCamera.transform.localPosition.z;
-            playerCamera.transform.Translate(Vector3.back * Time.deltaTime * moveDistance);
+            playerCamera.transform.Translate(Vector3.back * Time.deltaTime * moveDistance * 2);
         }
 
-        var newValue = playerStats.viewGauge - Time.deltaTime * 20;
+        var newValue = playerStats.viewGauge - Time.deltaTime * 15;
         playerStats.viewGauge = newValue < 0 ? 0 : newValue;
         playerUI.UpdateViewGauge(newValue);
     }
@@ -209,8 +213,19 @@ public class PlayerManager : MonoBehaviour
     {
         if (playerCamera.transform.localPosition.z < -playerStats.zoom)
         {
-            var moveDistance = playerStats.zoom + playerCamera.transform.localPosition.z;
-            playerCamera.transform.Translate(Vector3.back * Time.deltaTime * moveDistance);
+            Debug.Log(playerCamera.transform.localPosition.z);
+            Debug.Log(-playerStats.zoom);
+            var moveDistance = playerStats.zoom -3 + playerCamera.transform.localPosition.z;
+            playerCamera.transform.Translate(Vector3.back * Time.deltaTime * moveDistance * 2);
+            if (penalize)
+            {
+                var newValue = playerStats.viewGauge - Time.deltaTime * 15;
+                playerStats.viewGauge = newValue < 0 ? 0 : newValue;
+            }
+        }
+        else
+        {
+            penalize = false;
         }
     }
 
@@ -267,10 +282,15 @@ public class PlayerManager : MonoBehaviour
 
     }
 
+    public void ResetCamera()
+    {
+        playerCamera.transform.position = new Vector3(playerCamera.transform.position.x, playerCamera.transform.position.y, Mathf.Min(playerCamera.transform.position.z, -playerStats.zoom));
+    }
+
     public void ZoomOutBuff()
     {
         playerStats.zoom += 2;
-        playerCamera.transform.position = new Vector3(playerCamera.transform.position.x, playerCamera.transform.position.y, Mathf.Min(playerCamera.transform.position.z, -playerStats.zoom));
+        ResetCamera();
     }
 
     public void ZoomInDebuff()

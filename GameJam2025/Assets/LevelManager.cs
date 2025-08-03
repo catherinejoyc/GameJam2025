@@ -141,10 +141,7 @@ public class LevelManager : MonoBehaviour
             Destroy(child.transform.gameObject);
         }
 
-        this.StartingTilePlayer1 = maze1.GetStartTile();
-        this.StartingTilePlayer2 = maze2.GetStartTile();
-        MazePlayer1.transform.position = this.StartingTilePlayer1.transform.position;
-        MazePlayer2.transform.position = this.StartingTilePlayer2.transform.position;
+
 
         Debug.Log(maze1.GetBestSolutionLength());
         Debug.Log(maze2.GetBestSolutionLength());
@@ -174,6 +171,11 @@ public class LevelManager : MonoBehaviour
 
         maze1.AddVisualBorder();
         maze2.AddVisualBorder();
+
+        this.StartingTilePlayer1 = maze1.GetStartTile();
+        this.StartingTilePlayer2 = maze2.GetStartTile();
+        MazePlayer1.transform.position = this.StartingTilePlayer1.transform.position;
+        MazePlayer2.transform.position = this.StartingTilePlayer2.transform.position;
 
         GameManager.Instance.FreezePlayers(false);
 
@@ -212,6 +214,8 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
+        GameManager.Instance.player1.playerStats.health = 50;
+        GameManager.Instance.player2.playerStats.health = 50;
         GameManager.Instance.FreezePlayers(true);
         StartCoroutine(StartRound());
 
