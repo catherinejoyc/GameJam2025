@@ -149,7 +149,7 @@ public class PlayerManager : MonoBehaviour
 
     public void Heal(int amount)
     {
-        if(playerStats.health < 100)
+        if(playerStats.health < 50)
         {
             playerStats.health += amount;
         }
