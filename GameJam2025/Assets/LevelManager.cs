@@ -134,6 +134,11 @@ public class LevelManager : MonoBehaviour
             Destroy(maze.gameObject);
         }
 
+        foreach (Transform child in transform)
+        {
+            Destroy(child.transform.gameObject);
+        }
+
         this.StartingTilePlayer1 = maze1.GetStartTile();
         this.StartingTilePlayer2 = maze2.GetStartTile();
         MazePlayer1.transform.position = this.StartingTilePlayer1.transform.position;
