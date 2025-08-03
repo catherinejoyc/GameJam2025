@@ -14,6 +14,7 @@ public class PlayerManager : MonoBehaviour
     public PlayerStats playerStats;
     public PlayerUI playerUI;
     public EffectDisplayUI effectDisplayUI;
+    public StatsUI statsUI;
     public Camera playerCamera;
     public GameObject mazePlayerObject;
     public GameObject blockPrefab;
@@ -75,6 +76,7 @@ public class PlayerManager : MonoBehaviour
         playerUI.UpdateHealth(playerStats.health);
         playerUI.UpdateViewGauge(playerStats.viewGauge);
         effectDisplayUI.RefreshUI(currentEffects);
+        statsUI.UpdateCurrentStats(playerStats);
     }
 
     public void AddEffectToList(Effects effect)
@@ -126,7 +128,7 @@ public class PlayerManager : MonoBehaviour
             right.moveSpeed += amount;
             return;
         }
-
+        UpdateUI();
         Debug.LogWarning("No player controller found on maze player!");
     }
 
@@ -150,7 +152,7 @@ public class PlayerManager : MonoBehaviour
             right.moveSpeed -= amount;
             return;
         }
-
+        UpdateUI();
         Debug.LogWarning("No player controller found on maze player!");
     }
 
@@ -166,16 +168,19 @@ public class PlayerManager : MonoBehaviour
     public void PlusAttack(int addition)
     {
         playerStats.damage += addition;
+        UpdateUI();
     }
 
     public void MultiplyAttack(int multiplier)
     {
         playerStats.damage *=  multiplier;
+        UpdateUI();
     }
 
     public void IncreaseShield(int amount)
     {
         playerStats.shield += amount; //reset after round?
+        UpdateUI();
     }
 
     public void ResetToStart(PlayerType forPlayer)
@@ -291,12 +296,14 @@ public class PlayerManager : MonoBehaviour
     {
         playerStats.zoom += 2;
         ResetCamera();
+        UpdateUI();
     }
 
     public void ZoomInDebuff()
     {
         playerStats.zoom -= 2;
         playerStats.zoom = Mathf.Max(1, playerStats.zoom); // Ensure zoom does not go below 1
+        UpdateUI();
     }
 
     public void BlockExit(PlayerType forPlayer)
