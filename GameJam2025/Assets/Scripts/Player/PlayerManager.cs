@@ -32,7 +32,7 @@ public class PlayerManager : MonoBehaviour
         playerStats.health = newHealth < 0 ? 0 : newHealth;
         if (newHealth <= 0)
         {
-            // Game Over
+            GameManager.Instance.EndGame(player);
         }
     }
 

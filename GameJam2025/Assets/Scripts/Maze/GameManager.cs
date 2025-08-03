@@ -1,5 +1,7 @@
+using Assets.Scripts.Player;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,6 +23,20 @@ public class GameManager : MonoBehaviour
 
     public PlayerManager player1;
     public PlayerManager player2;
+
+    public Player winner;
+
+    public void EndGame(Player loser)
+    {
+        if(loser == Player.Player1)
+        {
+            winner = Player.Player2;
+        } else
+        {
+            winner = Player.Player1;
+        }
+        SceneManager.LoadScene("End Screen");
+    }
 
     public void Player1FinishesMaze()
     {
