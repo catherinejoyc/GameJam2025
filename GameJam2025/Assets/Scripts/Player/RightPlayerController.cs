@@ -58,7 +58,7 @@ public class RightPlayerController : MonoBehaviour
                 Debug.Log("No effect on collectible");
                 break;
             case Effects.ShieldBuff:
-                thisPlayerManager.IncreaseShield(1);
+                thisPlayerManager.IncreaseShield(5);
                 thisPlayerManager.AddEffectToList(collectibleEffect);
                 break;
             case Effects.SpeedBuff:
