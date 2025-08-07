@@ -223,19 +223,20 @@ public class PlayerManager : MonoBehaviour
 
     private void ResetViewGauge()
     {
-        if (playerCamera.transform.localPosition.z < -playerStats.zoom)
+        var targetZPos = -(playerStats.zoom);
+        var transitionSpeed = 0.3f;
+        playerCamera.transform.localPosition = Vector3.MoveTowards(playerCamera.transform.localPosition, 
+            new Vector3(playerCamera.transform.localPosition.x, playerCamera.transform.localPosition.y, targetZPos), transitionSpeed);
+
+        if (penalize)
         {
-            Debug.Log(playerCamera.transform.localPosition.z);
-            Debug.Log(-playerStats.zoom);
-            var moveDistance = playerStats.zoom -3 + playerCamera.transform.localPosition.z;
-            playerCamera.transform.Translate(Vector3.back * Time.deltaTime * moveDistance * 2);
-            if (penalize)
-            {
-                var newValue = playerStats.viewGauge - Time.deltaTime * 15;
-                playerStats.viewGauge = newValue < 0 ? 0 : newValue;
-            }
+            var newValue = playerStats.viewGauge - Time.deltaTime * 15;
+            playerStats.viewGauge = newValue < 0 ? 0 : newValue;
         }
-        else
+
+        var maxDistanceBetween = 0.1f;
+        var distanceDifference = Mathf.Abs(playerCamera.transform.localPosition.z - (-playerStats.zoom));
+        if (distanceDifference < maxDistanceBetween)
         {
             penalize = false;
         }
@@ -296,7 +297,7 @@ public class PlayerManager : MonoBehaviour
 
     public void ResetCamera()
     {
-        playerCamera.transform.position = new Vector3(playerCamera.transform.position.x, playerCamera.transform.position.y, Mathf.Min(playerCamera.transform.position.z, -playerStats.zoom));
+        playerCamera.transform.localPosition = new Vector3(playerCamera.transform.localPosition.x, playerCamera.transform.localPosition.y, -playerStats.zoom);
     }
 
     public void ZoomOutBuff()
