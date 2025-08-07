@@ -224,9 +224,10 @@ public class PlayerManager : MonoBehaviour
     private void ResetViewGauge()
     {
         var targetZPos = -(playerStats.zoom);
-        var transitionSpeed = 0.3f;
+        var transitionSpeed = 50f;
         playerCamera.transform.localPosition = Vector3.MoveTowards(playerCamera.transform.localPosition, 
-            new Vector3(playerCamera.transform.localPosition.x, playerCamera.transform.localPosition.y, targetZPos), transitionSpeed);
+            new Vector3(playerCamera.transform.localPosition.x, playerCamera.transform.localPosition.y, targetZPos), 
+            transitionSpeed * Time.deltaTime);
 
         if (penalize)
         {
