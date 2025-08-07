@@ -2,14 +2,25 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum Scene
+{
+    Menu,
+    End,
+    Level
+}
+
 public class MainMenu : MonoBehaviour
 {
     public GameObject infoScreen;
     public AudioSource audioSource;
+    public Scene currentScene;
 
     private void Awake()
     {
-        DontDestroyOnLoad(audioSource.gameObject);
+        if(currentScene == Scene.Menu)
+        { 
+            DontDestroyOnLoad(audioSource.gameObject); 
+        }
     }
 
     public void StartGame()

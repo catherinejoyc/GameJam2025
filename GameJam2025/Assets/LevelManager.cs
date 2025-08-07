@@ -36,7 +36,7 @@ public class LevelManager : MonoBehaviour
 
     public int currentMazeSize = 5;
     public int currentMazeRandStep = 5;
-    public int mazeModifier = 2;
+    public int mazeModifier = 1;
     public int currentItemAmount = 5;
 
     public List<GameObject> CollectiblePrefabs;
